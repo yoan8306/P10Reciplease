@@ -190,7 +190,17 @@
                                     <constraint firstAttribute="height" constant="44" id="wcC-A8-68C"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="kyV-ry-9OM"/>
+                                    <navigationItem title="Title" id="kyV-ry-9OM">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="UF9-dP-x7h">
+                                            <imageReference key="image" image="star" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                <hierarchicalColors>
+                                                    <color red="0.2678874135" green="0.58452969789999998" blue="0.34296116230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color systemColor="secondaryLabelColor"/>
+                                                    <color systemColor="tertiaryLabelColor"/>
+                                                </hierarchicalColors>
+                                            </imageReference>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="exG-1q-fLw">
