@@ -21,24 +21,37 @@ class SearchRecipeViewController: UIViewController {
     }
     
 // MARK: - IBAction
+    @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
+        ingredientsTextField.resignFirstResponder()
+    }
     @IBAction func addIngredientsActionButton() {
-        guard let listIngredient = ingredientsTextField.text else {
-            return
+        if listIngredients.addIngredient(ingredientList: ingredientsTextField.text ?? "") {
+            ingredientsTextField.text = ""
+            ingredientsTextField.resignFirstResponder()
+            ListIngredientsTableView.reloadData()
+        } else {
+            presentAlert(alertMessage: "You can separate ingredient list with \",\"\nTry again 😉")
         }
-        listIngredients.addIngredient(ingredientList: listIngredient)
-        ListIngredientsTableView.reloadData()
     }
     
     @IBAction func clearIngredientsActionButton() {
-        
+        listIngredients.clearListIngredient()
+        ListIngredientsTableView.reloadData()
     }
     
     @IBAction func searchRecipesActionButton() {
+        let recipesListStoryboard = UIStoryboard(name: "RecipesList", bundle: nil)
+        
+        guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
+         return
+        }
+
+        recipesListViewController.recipesList = listIngredients
+        navigationController?.pushViewController(recipesListViewController, animated: true)
     }
     
-    
 }
-
+// MARK: - table view data source
 extension SearchRecipeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listIngredients.listIngredient.count
@@ -57,9 +70,23 @@ extension SearchRecipeViewController: UITableViewDataSource {
         } else {
             cell.textLabel?.text = ingredient
         }
-
         return cell
     }
-    
-    
+}
+// MARK: - TableView delegate
+extension SearchRecipeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            listIngredients.removeIngredient(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+}
+
+// MARK: - Textfield delegate
+extension SearchRecipeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addIngredientsActionButton()
+        return true
+    }
 }
