@@ -40,13 +40,14 @@ class SearchRecipeViewController: UIViewController {
     }
     
     @IBAction func searchRecipesActionButton() {
-        performSegue(withIdentifier: "resultRecipies", sender: self)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "resultRecipies" {
-            let recipesListVC = segue.destination as! RecipesListViewController
-            recipesListVC.recipesList = listIngredients
+        let recipesListStoryboard = UIStoryboard(name: "RecipesList", bundle: nil)
+        
+        guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
+         return
         }
+
+        recipesListViewController.recipesList = listIngredients
+        navigationController?.pushViewController(recipesListViewController, animated: true)
     }
     
 }

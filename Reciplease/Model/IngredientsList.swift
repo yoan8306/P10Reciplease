@@ -17,7 +17,7 @@ class IngredientsList {
 // MARK: - Add ingredient
     func addIngredient(ingredientList: String) -> Bool {
         let myList = deleteSpace(ingredientList: ingredientList)
-        guard checkListIngredient(freedSpaceString: myList) else {
+        guard !myList.isEmpty else {
             return false
         }
         listIngredient.append(contentsOf: myList.components(separatedBy: ",") )
@@ -27,13 +27,6 @@ class IngredientsList {
     private func deleteSpace(ingredientList: String) -> String {
         let freedSpaceString = ingredientList.filter {!$0.isWhitespace}
         return freedSpaceString
-    }
-    
-   private func checkListIngredient(freedSpaceString: String) -> Bool {
-       guard !freedSpaceString.isEmpty else {
-           return false
-       }
-       return true
     }
     
 // MARK: - delete ingredient

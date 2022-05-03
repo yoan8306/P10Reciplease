@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uw1-UW-4tq">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reciplease-->
+        <scene sceneID="QvD-ht-1j0">
+            <objects>
+                <viewController storyboardIdentifier="RecipesList" id="Uw1-UW-4tq" customClass="RecipesListViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sNb-Ma-Jl4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Slo-GG-tTu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="100" id="cAd-Zs-bEX" customClass="listRecipesTableViewCell" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cAd-Zs-bEX" id="3bs-y5-xEb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Recipes" translatesAutoresizingMaskIntoConstraints="NO" id="cfk-XJ-Xtx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZV-Z4-wsq">
+                                                    <rect key="frame" x="20" y="55.5" width="374" height="20"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="deg-xq-eJ3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFV-0e-26l">
+                                                    <rect key="frame" x="20" y="76.5" width="374" height="17.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17.5" id="yAs-Qm-uio"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GBl-Xd-zCG">
+                                                    <rect key="frame" x="262" y="5" width="132" height="40.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,5k O" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMr-EC-Mo6">
+                                                            <rect key="frame" x="48" y="0.0" width="36" height="20.5"/>
+                                                            <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3m " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSu-Zd-gs5">
+                                                            <rect key="frame" x="48" y="20.5" width="36" height="20"/>
+                                                            <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18.5" id="seY-ti-0ns"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="XSu-Zd-gs5" firstAttribute="trailing" secondItem="tMr-EC-Mo6" secondAttribute="trailing" id="JY9-Xk-IEB"/>
+                                                        <constraint firstItem="XSu-Zd-gs5" firstAttribute="leading" secondItem="tMr-EC-Mo6" secondAttribute="leading" id="NcM-XI-O2P"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cfk-XJ-Xtx" firstAttribute="leading" secondItem="3bs-y5-xEb" secondAttribute="leading" id="4KA-Ix-3Wd"/>
+                                                <constraint firstAttribute="bottom" secondItem="cfk-XJ-Xtx" secondAttribute="bottom" id="7Eu-EJ-HGQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="cfk-XJ-Xtx" secondAttribute="trailing" id="8vQ-AW-di0"/>
+                                                <constraint firstAttribute="trailing" secondItem="GBl-Xd-zCG" secondAttribute="trailing" constant="20" id="9Wv-IZ-Q3k"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MZV-Z4-wsq" secondAttribute="trailing" id="9dX-S2-tAY"/>
+                                                <constraint firstItem="cfk-XJ-Xtx" firstAttribute="top" secondItem="3bs-y5-xEb" secondAttribute="top" id="AVy-uq-DiM"/>
+                                                <constraint firstItem="NFV-0e-26l" firstAttribute="bottom" secondItem="3bs-y5-xEb" secondAttribute="bottomMargin" constant="5" id="K02-5p-akx"/>
+                                                <constraint firstItem="GBl-Xd-zCG" firstAttribute="top" secondItem="3bs-y5-xEb" secondAttribute="top" constant="5" id="Kmh-QF-n0d"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NFV-0e-26l" secondAttribute="trailing" id="Ra2-Qz-b6Z"/>
+                                                <constraint firstItem="NFV-0e-26l" firstAttribute="top" secondItem="MZV-Z4-wsq" secondAttribute="bottom" constant="1" id="bvB-1q-Iui"/>
+                                                <constraint firstItem="NFV-0e-26l" firstAttribute="leading" secondItem="3bs-y5-xEb" secondAttribute="leadingMargin" id="gXf-VA-JaQ"/>
+                                                <constraint firstItem="MZV-Z4-wsq" firstAttribute="top" secondItem="GBl-Xd-zCG" secondAttribute="bottom" constant="10" id="j4R-6F-uR9"/>
+                                                <constraint firstItem="GBl-Xd-zCG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="3bs-y5-xEb" secondAttribute="leading" constant="262" id="kng-SW-qcB"/>
+                                                <constraint firstItem="MZV-Z4-wsq" firstAttribute="leading" secondItem="3bs-y5-xEb" secondAttribute="leadingMargin" id="toA-Ch-Awd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipesTitle" destination="MZV-Z4-wsq" id="rr5-3q-32W"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Uw1-UW-4tq" id="xaS-Sm-Vle"/>
+                                    <outlet property="delegate" destination="Uw1-UW-4tq" id="3dY-f9-Ie0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="62w-zq-FQq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="62w-zq-FQq" firstAttribute="trailing" secondItem="Slo-GG-tTu" secondAttribute="trailing" id="62h-29-WcL"/>
+                            <constraint firstItem="Slo-GG-tTu" firstAttribute="leading" secondItem="62w-zq-FQq" secondAttribute="leading" id="IsI-ZB-t0B"/>
+                            <constraint firstItem="62w-zq-FQq" firstAttribute="bottom" secondItem="Slo-GG-tTu" secondAttribute="bottom" id="Kbm-PI-Hxq"/>
+                            <constraint firstItem="Slo-GG-tTu" firstAttribute="top" secondItem="62w-zq-FQq" secondAttribute="top" id="dV9-pw-0kb"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="08E-aC-sU6"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="4KJ-lb-g0x"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Opr-hj-j6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="619"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Recipes" width="1024" height="576"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
