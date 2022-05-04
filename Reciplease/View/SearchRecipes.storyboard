@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
+        <!--Reciplease-->
         <scene sceneID="OHJ-qE-Qo7">
             <objects>
                 <viewController storyboardIdentifier="SearchRecipes" id="bFA-Xw-vCN" customClass="SearchRecipeViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,6 +170,7 @@
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="av1-qe-I2w"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="pP5-Ue-Esg"/>
                     <connections>
                         <outlet property="ListIngredientsTableView" destination="8nt-Bd-wWT" id="gZf-MI-1kV"/>
                         <outlet property="ingredientsTextField" destination="FA0-tE-Gt3" id="zjl-xh-b96"/>

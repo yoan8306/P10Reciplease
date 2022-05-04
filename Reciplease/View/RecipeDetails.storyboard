@@ -4,28 +4,26 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Reciplease-->
         <scene sceneID="HQX-bz-R7s">
             <objects>
-                <viewController storyboardIdentifier="UIViewController-Ogu-Fn-2RY" id="Ogu-Fn-2RY" customClass="RecipiesDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeDetails" id="Ogu-Fn-2RY" customClass="RecipeDetailsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aqZ-Oc-GfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Recipes" translatesAutoresizingMaskIntoConstraints="NO" id="OQt-CX-JQE">
-                                <rect key="frame" x="0.0" y="44" width="414" height="400"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="jhz-cH-Rqm"/>
+                                    <constraint firstAttribute="height" constant="300" id="qub-qg-wOE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRS-FD-jE0">
-                                <rect key="frame" x="0.0" y="419" width="414" height="25"/>
+                                <rect key="frame" x="0.0" y="319" width="414" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="5yo-QR-Gl1"/>
                                 </constraints>
@@ -34,16 +32,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX5-Ag-BEq">
-                                <rect key="frame" x="0.0" y="444" width="414" height="25"/>
+                                <rect key="frame" x="0.0" y="344" width="414" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="cBh-f8-3qk"/>
+                                    <constraint firstAttribute="height" constant="35" id="cBh-f8-3qk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bs1-d0-8RO">
-                                <rect key="frame" x="30" y="777" width="354" height="40"/>
+                                <rect key="frame" x="30" y="753" width="354" height="40"/>
                                 <color key="backgroundColor" red="0.2678874135" green="0.58452969789999998" blue="0.34296116230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Apj-sF-jHw"/>
@@ -53,12 +51,15 @@
                                     <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
                                     <color key="baseForegroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="getDirectionAction" destination="Ogu-Fn-2RY" eventType="touchUpInside" id="Em5-wj-Fjp"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="exG-1q-fLw">
-                                <rect key="frame" x="0.0" y="469" width="414" height="308"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="379" width="414" height="374"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="Qd3-Pp-rnC" style="IBUITableViewCellStyleDefault" id="SLW-PO-4iG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="Qd3-Pp-rnC" style="IBUITableViewCellStyleDefault" id="SLW-PO-4iG">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SLW-PO-4iG" id="QVn-7i-ni9">
@@ -68,14 +69,20 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qd3-Pp-rnC">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ogu-Fn-2RY" id="1cd-Dh-csL"/>
+                                    <outlet property="delegate" destination="Ogu-Fn-2RY" id="vNZ-Ab-Bcu"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="U0M-iC-u6m"/>
@@ -89,7 +96,7 @@
                             <constraint firstItem="exG-1q-fLw" firstAttribute="leading" secondItem="U0M-iC-u6m" secondAttribute="leading" id="GF9-EA-t5Y"/>
                             <constraint firstItem="U0M-iC-u6m" firstAttribute="trailing" secondItem="eRS-FD-jE0" secondAttribute="trailing" id="Riy-cQ-CSo"/>
                             <constraint firstItem="sX5-Ag-BEq" firstAttribute="top" secondItem="OQt-CX-JQE" secondAttribute="bottom" id="ST9-ae-i4T"/>
-                            <constraint firstItem="U0M-iC-u6m" firstAttribute="bottom" secondItem="Bs1-d0-8RO" secondAttribute="bottom" constant="45" id="Ysh-y8-yNM"/>
+                            <constraint firstItem="U0M-iC-u6m" firstAttribute="bottom" secondItem="Bs1-d0-8RO" secondAttribute="bottom" constant="20" id="Ysh-y8-yNM"/>
                             <constraint firstItem="U0M-iC-u6m" firstAttribute="trailing" secondItem="sX5-Ag-BEq" secondAttribute="trailing" id="ZEd-KG-9V5"/>
                             <constraint firstItem="U0M-iC-u6m" firstAttribute="trailing" secondItem="exG-1q-fLw" secondAttribute="trailing" id="dzK-oW-GjH"/>
                             <constraint firstItem="eRS-FD-jE0" firstAttribute="leading" secondItem="U0M-iC-u6m" secondAttribute="leading" id="iiu-KY-9ER"/>
@@ -99,34 +106,29 @@
                             <constraint firstItem="Bs1-d0-8RO" firstAttribute="top" secondItem="exG-1q-fLw" secondAttribute="bottom" id="zeh-Wj-5rQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Reciplease" id="vjF-mF-omb">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="XmU-5Z-Ann">
-                            <imageReference key="image" image="star" catalog="system" symbolScale="large" renderingMode="hierarchical">
-                                <hierarchicalColors>
-                                    <color red="0.2678874135" green="0.58452969789999998" blue="0.34296116230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color systemColor="secondaryLabelColor"/>
-                                    <color systemColor="tertiaryLabelColor"/>
-                                </hierarchicalColors>
-                            </imageReference>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Reciplease" leftItemsSupplementBackButton="YES" id="FQ9-5Z-YP2">
+                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="n2x-sZ-YhI">
+                            <connections>
+                                <action selector="FavoriteButtonAction:" destination="Ogu-Fn-2RY" id="ueL-Ad-Qsg"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoriteItem" destination="n2x-sZ-YhI" id="QOZ-Te-zWj"/>
+                        <outlet property="recipeDetailTableView" destination="exG-1q-fLw" id="lRi-J9-8Qq"/>
+                        <outlet property="recipeImageView" destination="OQt-CX-JQE" id="Go8-dt-srO"/>
+                        <outlet property="recipeTitle" destination="eRS-FD-jE0" id="zar-79-0us"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uv9-WT-eP4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="542"/>
+            <point key="canvasLocation" x="3692.753623188406" y="541.74107142857144"/>
         </scene>
     </scenes>
     <resources>
         <image name="Recipes" width="1024" height="576"/>
         <image name="star" catalog="system" width="128" height="116"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

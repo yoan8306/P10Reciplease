@@ -15,6 +15,13 @@ class RecipesListViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    
+//    private func addShadow() {
+//        UIView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
+//        UIView.layer.shadowRadius = 2.0
+//        UIView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+//        UIView.layer.shadowOpacity = 2.0
+//    }
 
 }
 
@@ -30,6 +37,15 @@ extension RecipesListViewController: UITableViewDataSource {
         cell.configureCell(titleRecipes: recipesTitle)
         return cell
     }
-    
-    
+}
+
+extension RecipesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let RecipeDetailsStoryboard = UIStoryboard(name: "RecipeDetails", bundle: nil)
+        guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
+            return
+        }
+        RecipeDetailsViewController.myRecipe = recipesList.listIngredient[indexPath.row]
+        navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
+    }
 }
