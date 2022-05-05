@@ -7,27 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="mTN-Sw-f2E">
-            <objects>
-                <navigationController id="HJi-Im-w3B" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1po-NT-oHd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="19"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="19"/>
-                        </textAttributes>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I81-3n-pze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-276" y="116"/>
-        </scene>
         <!--Reciplease-->
         <scene sceneID="uUf-zC-VtC">
             <objects>
@@ -52,31 +31,40 @@
         <scene sceneID="cT0-yD-FmU">
             <objects>
                 <viewControllerPlaceholder storyboardName="SearchRecipes" id="6tQ-qw-xCp" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="oQR-TG-loO"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="oQR-TG-loO"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3p-G0-Cgi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518.125" y="-48.591549295774648"/>
+            <point key="canvasLocation" x="2537" y="-192"/>
         </scene>
         <!--RecipesList-->
         <scene sceneID="vvY-4N-e0v">
             <objects>
                 <viewControllerPlaceholder storyboardName="RecipesList" id="IXU-vM-U58" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="18C-tK-Mla"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="18C-tK-Mla"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbA-oO-OkK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2537" y="638"/>
+            <point key="canvasLocation" x="2518" y="495"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="odO-dZ-m0z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T8z-17-XwM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4S3-D8-FWa"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="4S3-D8-FWa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PoN-eu-UHz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -85,17 +73,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kre-Wl-dbL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1629" y="-49"/>
+            <point key="canvasLocation" x="1658" y="-192"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="D1o-AV-2kN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T3m-GY-ptx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uhw-m2-8ax"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="uhw-m2-8ax"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zsf-G6-lhS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -104,7 +102,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYt-NP-sdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="639"/>
+            <point key="canvasLocation" x="1658" y="496"/>
         </scene>
     </scenes>
 </document>

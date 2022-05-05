@@ -20,7 +20,7 @@ class IngredientsList {
         guard !myList.isEmpty else {
             return false
         }
-        listIngredient.append(contentsOf: myList.components(separatedBy: ",") )
+        listIngredient.append(contentsOf: myList.components(separatedBy: ","))
         return true
     }
     

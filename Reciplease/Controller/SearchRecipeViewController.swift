@@ -17,7 +17,6 @@ class SearchRecipeViewController: UIViewController {
 // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
 // MARK: - IBAction
@@ -47,6 +46,7 @@ class SearchRecipeViewController: UIViewController {
         }
 
         recipesListViewController.recipesList = listIngredients
+        recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
     }
     
