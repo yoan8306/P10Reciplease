@@ -10,19 +10,21 @@ import UIKit
 class RecipesListViewController: UIViewController {
     
     var recipesList = IngredientsList()
+    var showTrash = true
+    lazy var trashBarItem: UIBarButtonItem = {
+        UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if showTrash {
+            navigationItem.rightBarButtonItem = trashBarItem
+        }
     }
     
-//    private func addShadow() {
-//        UIView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
-//        UIView.layer.shadowRadius = 2.0
-//        UIView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-//        UIView.layer.shadowOpacity = 2.0
-//    }
-
+    @objc func deleteAll() {
+        trashBarItem.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
 }
 
 extension RecipesListViewController: UITableViewDataSource {

@@ -46,6 +46,7 @@ class SearchRecipeViewController: UIViewController {
         }
 
         recipesListViewController.recipesList = listIngredients
+        recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
     }
     

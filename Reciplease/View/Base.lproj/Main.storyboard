@@ -47,11 +47,11 @@
             </objects>
             <point key="canvasLocation" x="2518" y="495"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="odO-dZ-m0z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T8z-17-XwM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4S3-D8-FWa"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="4S3-D8-FWa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PoN-eu-UHz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -75,11 +75,11 @@
             </objects>
             <point key="canvasLocation" x="1658" y="-192"/>
         </scene>
-        <!--Item-->
+        <!--Favorites-->
         <scene sceneID="D1o-AV-2kN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T3m-GY-ptx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uhw-m2-8ax"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="uhw-m2-8ax"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zsf-G6-lhS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
