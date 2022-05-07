@@ -22,6 +22,7 @@ class RecipeService {
         session.request(url)
             .validate(statusCode: 200..<400)
             .responseData { response in
+                
                 switch response.result {
                 case .success(let result):
                     
@@ -37,10 +38,8 @@ class RecipeService {
                     }
                     
                 case .failure(let error):
-                    callBack(.failure(error.localizedDescription as? Error ?? APIError.statusCodeInvalid))
-                    
+                    callBack(.failure(error))
                 }
             }
     }
-    
 }
