@@ -25,6 +25,7 @@ class RecipeDetailsViewController: UIViewController {
     
     
     @IBAction func getDirectionAction() {
+
     }
     
  
@@ -32,9 +33,6 @@ class RecipeDetailsViewController: UIViewController {
         favoriteItem.image = UIImage(systemName: "star.fill")
         presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite", buttonTitle: "Ok", alertStyle: .default)
     }
-   
-    
-    
 }
 
 extension RecipeDetailsViewController: UITableViewDataSource {
