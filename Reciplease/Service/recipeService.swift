@@ -21,6 +21,7 @@ class RecipeService {
         
         session.request(url)
             .validate(statusCode: 200..<400)
+//        mettre en background
             .responseData { response in
                 
                 switch response.result {

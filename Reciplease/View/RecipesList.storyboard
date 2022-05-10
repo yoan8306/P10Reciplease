@@ -50,7 +50,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GBl-Xd-zCG">
+                                                <stackView contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="GBl-Xd-zCG">
                                                     <rect key="frame" x="262" y="5" width="132" height="40.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,5k O" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMr-EC-Mo6">
@@ -96,7 +96,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="imageRecipe" destination="cfk-XJ-Xtx" id="GJY-Qv-t48"/>
+                                            <outlet property="ingredientsList" destination="NFV-0e-26l" id="Zqf-Gb-Jl0"/>
                                             <outlet property="recipesTitle" destination="MZV-Z4-wsq" id="rr5-3q-32W"/>
+                                            <outlet property="scoreRecipe" destination="tMr-EC-Mo6" id="p8o-bv-bym"/>
+                                            <outlet property="totalTime" destination="XSu-Zd-gs5" id="47u-EH-EzZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -117,6 +121,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" id="08E-aC-sU6"/>
                     <navigationItem key="navigationItem" title="Reciplease" id="4KJ-lb-g0x"/>
+                    <connections>
+                        <outlet property="recipesListTableView" destination="Slo-GG-tTu" id="b7b-Xd-Rr9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opr-hj-j6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

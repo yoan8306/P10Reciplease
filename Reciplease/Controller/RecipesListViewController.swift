@@ -9,8 +9,10 @@ import UIKit
 
 class RecipesListViewController: UIViewController {
     
-    var recipesList = IngredientsList()
+    @IBOutlet weak var recipesListTableView: UITableView!
+    var recipesList: RecipesDTO?
     var showTrash = true
+    
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
     }()
@@ -24,21 +26,25 @@ class RecipesListViewController: UIViewController {
     
     @objc func deleteAll() {
         trashBarItem.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        presentAlert(alertMessage: "You have delete all")
     }
 }
 
 extension RecipesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipesList.listIngredient.count
+        guard let recipesList = recipesList?.hits else {
+            return 0
+        }
+        return recipesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
-        let recipesTitle = recipesList.listIngredient[indexPath.row]
-        
-        cell.configureCell(titleRecipes: recipesTitle)
+      
+        cell.configureCell(recipe: recipesList, index: indexPath.row)
         return cell
     }
+    
 }
 
 extension RecipesListViewController: UITableViewDelegate {
@@ -47,7 +53,7 @@ extension RecipesListViewController: UITableViewDelegate {
         guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
-        RecipeDetailsViewController.myRecipe = recipesList.listIngredient[indexPath.row]
+        RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
     }
 }

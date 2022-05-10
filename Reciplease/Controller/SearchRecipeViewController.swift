@@ -12,7 +12,9 @@ class SearchRecipeViewController: UIViewController {
     
 // MARK: - IBOutlet
     @IBOutlet weak var ingredientsTextField: UITextField!
+    @IBOutlet weak var searchRecipeButton: UIButton!
     @IBOutlet weak var ListIngredientsTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -39,15 +41,43 @@ class SearchRecipeViewController: UIViewController {
     }
     
     @IBAction func searchRecipesActionButton() {
+        callRecipes(ingredients: listIngredients.returnIngredientList())
+    }
+    
+// MARK: - privates functions
+    private func callRecipes(ingredients: String) {
+        showActivityIndicator(shown: true)
+        RecipeService.shared.getTheRecipes(ingredients: ingredients) { [weak self] callBack in
+            guard let self = self else {
+                return
+            }
+            switch callBack {
+            case .success(let recipes):
+                self.showActivityIndicator(shown: false)
+                self.transferRecipesToRecipesListViewController(recipesList: recipes)
+            case .failure(let error):
+                self.presentAlert(alertMessage: error.localizedDescription)
+                self.showActivityIndicator(shown: false)
+            }
+        }
+    }
+
+    
+    private func transferRecipesToRecipesListViewController(recipesList: RecipesDTO) {
         let recipesListStoryboard = UIStoryboard(name: "RecipesList", bundle: nil)
         
         guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
          return
         }
 
-        recipesListViewController.recipesList = listIngredients
+        recipesListViewController.recipesList = recipesList
         recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
+    }
+    
+    private func showActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
+        searchRecipeButton.isHidden = shown
     }
     
 }
