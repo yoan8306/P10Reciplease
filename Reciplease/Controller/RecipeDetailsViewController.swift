@@ -12,7 +12,6 @@ class RecipeDetailsViewController: UIViewController {
     var myRecipe: RecipeDetails?
     var favoritePage = false
     var favoriteRecipes = FavoritesRecipes()
-//    var favoriteCoreData = FavoritesRecipes.all
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!

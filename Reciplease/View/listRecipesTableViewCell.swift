@@ -34,8 +34,8 @@ class listRecipesTableViewCell: UITableViewCell {
         addGradient()
         recipesTitle.text = recipe[index].label
         ingredientsList.text = recipe[index].ingredientLines?.joined(separator: ", ")
-        totalTime.text = "\(String(recipe[index].totalTime)) ⏲"
-        scoreRecipe.text = "\(String(recipe[index].yield)) 👍"
+        totalTime.text = "\(String(recipe[index].totalTime)): min ⏲"
+        scoreRecipe.text = "\(String(recipe[index].yield))/10 👍"
         getImageService(urlImage)
     }
     
@@ -82,8 +82,8 @@ class listRecipesTableViewCell: UITableViewCell {
     private func configureTextCell(recipe: RecipesDTO, index: Int) {
         recipesTitle.text = recipe.hits?[index].recipe?.label ?? "No title"
         ingredientsList.text = getIngredients(recipe: recipe, index: index)
-        totalTime.text = "\(String(recipe.hits?[index].recipe?.totalTime ?? 0)) ⏲"
-        scoreRecipe.text = "\(String(recipe.hits?[index].recipe?.yield ?? 0)) 👍"
+        totalTime.text = "\(String(recipe.hits?[index].recipe?.totalTime ?? 0)): min ⏲"
+        scoreRecipe.text = "\(String(recipe.hits?[index].recipe?.yield ?? 0))/10 👍"
 
     }
 
