@@ -12,7 +12,7 @@ class ImageRecipeService {
     static var shared = ImageRecipeService()
 
     private init() {}
-    
+
     func getImage(link: String, callBack: @escaping(Result <Data, Error>) -> Void) {
         guard let url = URL(string: link) else {
             return
@@ -41,4 +41,3 @@ class ImageRecipeService {
 //        }.resume()
     }
 }
-

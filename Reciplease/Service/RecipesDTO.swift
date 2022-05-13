@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-//MARK: Properties to Parse and Get Data
+// MARK: Properties to Parse and Get Data
 struct RecipesDTO: Decodable {
     var hits: [Recipe]?
 }
@@ -24,9 +24,9 @@ struct RecipeDetails: Decodable {
     var ingredientLines: [String]?
     var totalTime: Double?
     var ingredients: [IngredientsData]?
+    var imageRecipe: Data?
 }
 
 struct IngredientsData: Decodable {
     var food: String?
 }
-
