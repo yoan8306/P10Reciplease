@@ -8,47 +8,70 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-
+    
+    var myRecipe: RecipeDetails?
+    var favoritePage = false
+    var favoriteRecipes = FavoritesRecipes()
+//    var favoriteCoreData = FavoritesRecipes.all
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
     @IBOutlet weak var recipeDetailTableView: UITableView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
     @IBOutlet weak var recipeImageView: UIImageView!
-
-    var myRecipe: RecipeDetails?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let screenHeight = UIScreen.main.bounds.height
         NSLayoutConstraint.activate([recipeImageView.heightAnchor.constraint(equalToConstant: screenHeight/3)])
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
-        getImageService(recipe: myRecipe)
     }
-
+    
     @IBAction func getDirectionAction() {
-
+        
     }
-
+    
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
         favoriteItem.image = UIImage(systemName: "star.fill")
         addRecipe(recipe: myRecipe)
     }
-
+    
     private func initializeView() {
         let gradient = CAGradientLayer()
-
+        
+        if favoritePage {
+            getImageService(urlImage: favoriteRecipes.image)
+            favoriteItem.image = UIImage(systemName: "star.fill")
+        } else {
+            checkRecipe(recipe: myRecipe)
+            getImageService(urlImage: myRecipe?.image)
+        }
+        
         gradient.frame = backgroundLabelUIView.bounds
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-
+        
         backgroundLabelUIView.layer.insertSublayer(gradient, at: 0)
         recipeTitle.text = myRecipe?.label
     }
-
-    private func getImageService(recipe: RecipeDetails?) {
+    
+    private func checkRecipe(recipe: RecipeDetails?) {
+        guard let myRecipe = myRecipe else {
+            return
+        }
+       
+        if favoriteRecipes.recipeAlreadyExist(url: myRecipe.url) {
+            favoriteItem.image = UIImage(systemName: "star.fill")
+        }
+        else {
+            favoriteItem.image = UIImage(systemName: "star")
+        }
+    }
+    
+    private func getImageService(urlImage: String?) {
         toggleActivity(shown: false)
-        guard let recipe = recipe, let urlImage = recipe.image else {
+        guard let urlImage = urlImage else {
             return
         }
 
@@ -66,7 +89,7 @@ class RecipeDetailsViewController: UIViewController {
             }
         }
     }
-
+    
     private func toggleActivity(shown: Bool) {
         activityIndicator.isHidden = shown
     }
@@ -75,42 +98,57 @@ class RecipeDetailsViewController: UIViewController {
         guard let recipe = recipe else {
             return
         }
-
-        let newRecipe = FavoritesRecipes(context: AppDelegate.viewContext)
-        newRecipe.ingredientLines = recipe.ingredientLines
-        newRecipe.image = recipe.image
-        newRecipe.url = recipe.url
-        newRecipe.label = recipe.label
-        newRecipe.ingredients = recipe.ingredients?.description
-        newRecipe.totalTime = recipe.totalTime ?? 0
-        newRecipe.yield = recipe.yield ?? 0
-        newRecipe.imageRecipe = recipe.imageRecipe
         
-        do {
-            try AppDelegate.viewContext.save()
-            presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite", buttonTitle: "Ok", alertStyle: .default)
-        } catch {
-            presentAlert( alertTitle: "🙁", alertMessage: "Error during save. n/Try again")
+        if favoriteRecipes.recipeAlreadyExist(url: recipe.url){
+            presentAlert(alertMessage: "You have already in your favorite")
+        } else {
+            
+            let newRecipe = FavoritesRecipes(context: AppDelegate.viewContext)
+            newRecipe.ingredientLines = recipe.ingredientLines
+            newRecipe.image = recipe.image
+            newRecipe.url = recipe.url
+            newRecipe.label = recipe.label
+            newRecipe.ingredients = recipe.ingredients?.description
+            newRecipe.totalTime = recipe.totalTime ?? 0
+            newRecipe.yield = recipe.yield ?? 0
+            newRecipe.imageRecipe = recipe.imageRecipe
+            
+            do {
+                try AppDelegate.viewContext.save()
+                presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite")
+            } catch {
+                presentAlert( alertTitle: "🙁", alertMessage: "Error during save. n/Try again")
+            }
         }
-        
     }
 }
 
+// MARK: - TableView - DataSource
 extension RecipeDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let linesCount = myRecipe?.ingredientLines?.count else {
-            return 0
+        var linesCount = 0
+        if favoritePage {
+            linesCount = favoriteRecipes.ingredientLines?.count ?? 0
+        } else {
+            linesCount = myRecipe?.ingredientLines?.count ?? 0
         }
         return linesCount
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        guard let myRecipe = myRecipe?.ingredientLines else {
-            return cell
+        
+        if favoritePage {
+            guard let favoriteDetail = favoriteRecipes.ingredientLines else {
+                return cell
+            }
+            cell.textLabel?.text = "- \(favoriteDetail[indexPath.row])"
+        } else {
+            guard let myRecipe = myRecipe?.ingredientLines else {
+                return cell
+            }
+            cell.textLabel?.text = "- \(myRecipe[indexPath.row])"
         }
-
-        cell.textLabel?.text = "- \(myRecipe[indexPath.row])"
         return cell
     }
 }

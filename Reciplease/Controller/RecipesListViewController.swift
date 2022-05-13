@@ -9,20 +9,26 @@ import UIKit
 
 class RecipesListViewController: UIViewController {
 
-    @IBOutlet weak var recipesListTableView: UITableView!
     var recipesList: RecipesDTO?
     var showTrash = true
     var myRecipes = FavoritesRecipes.all
-
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
     }()
-
+    
+    @IBOutlet weak var recipesListTableView: UITableView!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         if showTrash {
             navigationItem.rightBarButtonItem = trashBarItem
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        myRecipes = FavoritesRecipes.all
+        recipesListTableView.reloadData()
     }
 
     @objc func deleteAll() {
@@ -54,7 +60,6 @@ extension RecipesListViewController: UITableViewDataSource {
         }
         return cell
     }
-  
 }
 
 extension RecipesListViewController: UITableViewDelegate {
@@ -64,8 +69,13 @@ extension RecipesListViewController: UITableViewDelegate {
         guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
-        
-        RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
+        if showTrash {
+            RecipeDetailsViewController.favoritePage = true
+            RecipeDetailsViewController.favoriteRecipes = myRecipes[indexPath.row]
+        } else {
+            RecipeDetailsViewController.favoritePage = false
+            RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
+        }
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
     }
 }

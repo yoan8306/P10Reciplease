@@ -31,6 +31,7 @@ class listRecipesTableViewCell: UITableViewCell {
         guard let urlImage = recipe[index].image else {
             return
         }
+        addGradient()
         recipesTitle.text = recipe[index].label
         ingredientsList.text = recipe[index].ingredientLines?.joined(separator: ", ")
         totalTime.text = "\(String(recipe[index].totalTime)) ⏲"
@@ -62,19 +63,20 @@ class listRecipesTableViewCell: UITableViewCell {
             guard let self = self else {
                 return
             }
+            self.toggleActivityIndicator(shown: true)
             DispatchQueue.main.async {
                 if case .success(let image) = callBack {
                     self.imageRecipe.image = UIImage(data: image)
                 } else {
                     self.imageRecipe.image = UIImage(named: "Recipes")
                 }
-                self.toggleActivityIndicator()
+                self.toggleActivityIndicator(shown: false)
             }
         }
     }
 
-    private func toggleActivityIndicator() {
-        activityIndicator.isHidden = true
+    private func toggleActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
     }
 
     private func configureTextCell(recipe: RecipesDTO, index: Int) {

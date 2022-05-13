@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class FavoritesRecipes: NSManagedObject {
+class FavoritesRecipes:NSManagedObject {
     static var all: [FavoritesRecipes] {
         let request: NSFetchRequest<FavoritesRecipes> = FavoritesRecipes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
@@ -16,5 +16,19 @@ class FavoritesRecipes: NSManagedObject {
             return []
         }
         return recipes
+    }
+    
+    func recipeAlreadyExist(url: String?) -> Bool {
+        guard let url = url else {
+            return false
+        }
+
+        if FavoritesRecipes.all.contains(where: { recipe in
+            recipe.url == url
+        }) {
+            return true
+        } else {
+            return false
+        }
     }
 }
