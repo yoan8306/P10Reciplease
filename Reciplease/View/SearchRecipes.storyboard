@@ -24,6 +24,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="qdO-KZ-hwv"/>
                                         </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
@@ -142,6 +143,9 @@
                                     <action selector="searchRecipesActionButton" destination="bFA-Xw-vCN" eventType="touchUpInside" id="qiL-fJ-Z9f"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pGy-x8-AOS">
+                                <rect key="frame" x="188.5" y="813.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YhK-RX-1jy"/>
                         <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,6 +156,7 @@
                             <constraint firstItem="Hg2-RO-zrX" firstAttribute="leading" secondItem="YhK-RX-1jy" secondAttribute="leading" constant="30" id="Ch4-os-Wzy"/>
                             <constraint firstItem="AOf-jI-bWE" firstAttribute="bottom" secondItem="Ax3-5h-3Rf" secondAttribute="bottom" id="D6F-tb-Iiy"/>
                             <constraint firstItem="AOf-jI-bWE" firstAttribute="trailing" secondItem="WuL-kF-R9B" secondAttribute="trailing" id="DY2-6S-HEJ"/>
+                            <constraint firstItem="pGy-x8-AOS" firstAttribute="centerX" secondItem="Hg2-RO-zrX" secondAttribute="centerX" id="JuH-xa-qFB"/>
                             <constraint firstItem="8nt-Bd-wWT" firstAttribute="top" secondItem="Ax3-5h-3Rf" secondAttribute="bottom" id="PEK-pX-kzN"/>
                             <constraint firstItem="8nt-Bd-wWT" firstAttribute="leading" secondItem="YhK-RX-1jy" secondAttribute="leading" id="PZy-Tn-0lw"/>
                             <constraint firstItem="Hg2-RO-zrX" firstAttribute="top" secondItem="8nt-Bd-wWT" secondAttribute="bottom" id="RnL-1j-IWU"/>
@@ -159,6 +164,7 @@
                             <constraint firstItem="ven-VI-TcC" firstAttribute="top" secondItem="YhK-RX-1jy" secondAttribute="top" id="Xot-2t-K1x"/>
                             <constraint firstItem="YhK-RX-1jy" firstAttribute="trailing" secondItem="Hg2-RO-zrX" secondAttribute="trailing" constant="30" id="ZWX-En-vgt"/>
                             <constraint firstItem="AOf-jI-bWE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ax3-5h-3Rf" secondAttribute="trailing" constant="8" symbolic="YES" id="b0n-pr-K0g"/>
+                            <constraint firstItem="pGy-x8-AOS" firstAttribute="centerY" secondItem="Hg2-RO-zrX" secondAttribute="centerY" id="bhK-V7-Ljo"/>
                             <constraint firstItem="Ax3-5h-3Rf" firstAttribute="leading" secondItem="YhK-RX-1jy" secondAttribute="leading" constant="20" id="dzB-sO-aCu"/>
                             <constraint firstItem="YhK-RX-1jy" firstAttribute="trailing" secondItem="ven-VI-TcC" secondAttribute="trailing" id="nKp-93-R4X"/>
                             <constraint firstItem="YhK-RX-1jy" firstAttribute="bottom" secondItem="Hg2-RO-zrX" secondAttribute="bottom" constant="10" id="pRc-zy-UIk"/>
@@ -173,7 +179,9 @@
                     <navigationItem key="navigationItem" title="Reciplease" id="pP5-Ue-Esg"/>
                     <connections>
                         <outlet property="ListIngredientsTableView" destination="8nt-Bd-wWT" id="gZf-MI-1kV"/>
+                        <outlet property="activityIndicator" destination="pGy-x8-AOS" id="GLT-cU-K4N"/>
                         <outlet property="ingredientsTextField" destination="FA0-tE-Gt3" id="zjl-xh-b96"/>
+                        <outlet property="searchRecipeButton" destination="Hg2-RO-zrX" id="sOb-ys-tby"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfs-DA-rwd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

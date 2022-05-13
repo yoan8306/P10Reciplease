@@ -21,25 +21,28 @@ class RecipeService {
         
         session.request(url)
             .validate(statusCode: 200..<400)
-            .responseData { response in
-                
+            .response(queue: DispatchQueue.global(qos: .background), completionHandler: { response in
                 switch response.result {
                 case .success(let result):
                     
-                    switch response.response?.statusCode {
-                    case 200:
+                    guard let result = result else {
+                        callBack(.failure(APIError.noData))
+                        return
+                    }
+                    
+                    if case response.response?.statusCode = 200 {
                         guard let recipes = try? JSONDecoder().decode(RecipesDTO.self, from: result) else {
                             callBack(.failure(APIError.decoding))
                             return
                         }
                         callBack(.success(recipes))
-                    default:
+                    } else {
                         callBack(.failure(APIError.statusCodeInvalid))
                     }
                     
                 case .failure(let error):
                     callBack(.failure(error))
                 }
-            }
+            })
     }
 }

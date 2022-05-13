@@ -23,12 +23,12 @@ class IngredientsList {
         listIngredient.append(contentsOf: myList.components(separatedBy: ","))
         return true
     }
-    
+
     private func deleteSpace(ingredientList: String) -> String {
         let freedSpaceString = ingredientList.filter {!$0.isWhitespace}
         return freedSpaceString
     }
-    
+
 // MARK: - delete ingredient
     func clearListIngredient() {
         listIngredient.removeAll()
@@ -40,6 +40,6 @@ class IngredientsList {
 
 // MARK: - return ingredient list
     func returnIngredientList() -> String {
-        return listIngredient.joined(separator: ", ")
+        return listIngredient.joined(separator: ",")
     }
 }

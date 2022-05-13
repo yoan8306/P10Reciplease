@@ -11,7 +11,7 @@ enum APIError: Error {
     case noData
     case statusCodeInvalid
     case decoding
-    
+
     var detail: String {
         switch self {
         case .noData:
