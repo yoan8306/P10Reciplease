@@ -69,7 +69,7 @@ class SearchRecipeViewController: UIViewController {
         guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
          return
         }
-        
+
         recipesListViewController.recipesList = recipesList
         recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)

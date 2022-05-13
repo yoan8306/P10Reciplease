@@ -33,7 +33,7 @@ class RecipeDetailsViewController: UIViewController {
 
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
         favoriteItem.image = UIImage(systemName: "star.fill")
-        presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite", buttonTitle: "Ok", alertStyle: .default)
+        addRecipe(recipe: myRecipe)
     }
 
     private func initializeView() {
@@ -69,6 +69,30 @@ class RecipeDetailsViewController: UIViewController {
 
     private func toggleActivity(shown: Bool) {
         activityIndicator.isHidden = shown
+    }
+    
+    private func addRecipe(recipe: RecipeDetails?) {
+        guard let recipe = recipe else {
+            return
+        }
+
+        let newRecipe = FavoritesRecipes(context: AppDelegate.viewContext)
+        newRecipe.ingredientLines = recipe.ingredientLines
+        newRecipe.image = recipe.image
+        newRecipe.url = recipe.url
+        newRecipe.label = recipe.label
+        newRecipe.ingredients = recipe.ingredients?.description
+        newRecipe.totalTime = recipe.totalTime ?? 0
+        newRecipe.yield = recipe.yield ?? 0
+        newRecipe.imageRecipe = recipe.imageRecipe
+        
+        do {
+            try AppDelegate.viewContext.save()
+            presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite", buttonTitle: "Ok", alertStyle: .default)
+        } catch {
+            presentAlert( alertTitle: "🙁", alertMessage: "Error during save. n/Try again")
+        }
+        
     }
 }
 

@@ -12,6 +12,7 @@ class RecipesListViewController: UIViewController {
     @IBOutlet weak var recipesListTableView: UITableView!
     var recipesList: RecipesDTO?
     var showTrash = true
+    var myRecipes = FavoritesRecipes.all
 
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
@@ -32,19 +33,28 @@ class RecipesListViewController: UIViewController {
 
 extension RecipesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let recipesList = recipesList?.hits else {
-            return 0
+        var numberSection = 0
+        if showTrash {
+            numberSection = myRecipes.count
+        } else {
+            guard let recipesList = recipesList?.hits else {
+                return 0
+            }
+            numberSection = recipesList.count
         }
-        return recipesList.count
+       return numberSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
-
-        cell.configureCell(recipe: recipesList, index: indexPath.row)
+        if showTrash {
+            cell.configureFavoriteCell(recipe: myRecipes, index: indexPath.row)
+        } else {
+            cell.configureCell(recipe: recipesList, index: indexPath.row)
+        }
         return cell
     }
-
+  
 }
 
 extension RecipesListViewController: UITableViewDelegate {
@@ -54,7 +64,7 @@ extension RecipesListViewController: UITableViewDelegate {
         guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
-
+        
         RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
     }

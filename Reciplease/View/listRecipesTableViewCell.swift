@@ -26,12 +26,24 @@ class listRecipesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func configureFavoriteCell(recipe: [FavoritesRecipes], index: Int) {
+        guard let urlImage = recipe[index].image else {
+            return
+        }
+        recipesTitle.text = recipe[index].label
+        ingredientsList.text = recipe[index].ingredientLines?.joined(separator: ", ")
+        totalTime.text = "\(String(recipe[index].totalTime)) ⏲"
+        scoreRecipe.text = "\(String(recipe[index].yield)) 👍"
+        getImageService(urlImage)
+    }
+    
 
     func configureCell(recipe: RecipesDTO?, index: Int) {
         guard let recipe = recipe, let urlImage = recipe.hits?[index].recipe?.image  else {
             return
         }
-    addGradient()
+        addGradient()
         getImageService(urlImage)
         configureTextCell(recipe: recipe, index: index)
     }
