@@ -25,6 +25,7 @@ class SearchRecipeViewController: UIViewController {
     @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
         ingredientsTextField.resignFirstResponder()
     }
+
     @IBAction func addIngredientsActionButton() {
         if listIngredients.addIngredient(ingredientList: ingredientsTextField.text ?? "") {
             ingredientsTextField.text = ""
@@ -69,7 +70,7 @@ class SearchRecipeViewController: UIViewController {
         guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
          return
         }
-        
+
         recipesListViewController.recipesList = recipesList
         recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
@@ -79,8 +80,8 @@ class SearchRecipeViewController: UIViewController {
         activityIndicator.isHidden = !shown
         searchRecipeButton.isHidden = shown
     }
-
 }
+
 // MARK: - table view data source
 extension SearchRecipeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
