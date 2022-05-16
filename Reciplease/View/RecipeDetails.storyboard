@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="exG-1q-fLw">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="753"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="709"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="LhG-bE-KJE" userLabel="header">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="294"/>
@@ -49,7 +49,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX5-Ag-BEq">
                                             <rect key="frame" x="0.0" y="259" width="414" height="35"/>
@@ -126,7 +126,7 @@
                             <constraint firstItem="exG-1q-fLw" firstAttribute="leading" secondItem="U0M-iC-u6m" secondAttribute="leading" id="GF9-EA-t5Y"/>
                             <constraint firstItem="U0M-iC-u6m" firstAttribute="bottom" secondItem="Bs1-d0-8RO" secondAttribute="bottom" constant="20" id="Ysh-y8-yNM"/>
                             <constraint firstItem="U0M-iC-u6m" firstAttribute="trailing" secondItem="exG-1q-fLw" secondAttribute="trailing" id="dzK-oW-GjH"/>
-                            <constraint firstItem="exG-1q-fLw" firstAttribute="top" secondItem="aqZ-Oc-GfR" secondAttribute="top" id="klP-eB-WHY"/>
+                            <constraint firstItem="exG-1q-fLw" firstAttribute="top" secondItem="U0M-iC-u6m" secondAttribute="top" id="klP-eB-WHY"/>
                             <constraint firstItem="Bs1-d0-8RO" firstAttribute="leading" secondItem="U0M-iC-u6m" secondAttribute="leading" constant="30" id="oy3-7t-BaL"/>
                             <constraint firstItem="Bs1-d0-8RO" firstAttribute="top" secondItem="exG-1q-fLw" secondAttribute="bottom" id="zeh-Wj-5rQ"/>
                         </constraints>
