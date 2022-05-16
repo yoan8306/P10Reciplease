@@ -8,18 +8,21 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-    
+
+// MARK: - Properties
     var myRecipe: RecipeDetails?
     var favoritePage = false
     var favoriteRecipes = FavoritesRecipes()
-    
+
+// MARK: - IBOutlet
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
     @IBOutlet weak var recipeDetailTableView: UITableView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
     @IBOutlet weak var recipeImageView: UIImageView!
-    
+
+// MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let screenHeight = UIScreen.main.bounds.height
@@ -27,7 +30,8 @@ class RecipeDetailsViewController: UIViewController {
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
     }
-    
+
+// MARK: - IBAction
     @IBAction func getDirectionAction() {
         
     }
@@ -36,7 +40,8 @@ class RecipeDetailsViewController: UIViewController {
         favoriteItem.image = UIImage(systemName: "star.fill")
         addRecipe(recipe: myRecipe)
     }
-    
+
+// MARK: - Private function
     private func initializeView() {
         let gradient = CAGradientLayer()
         
@@ -98,24 +103,14 @@ class RecipeDetailsViewController: UIViewController {
             return
         }
         
-        if favoriteRecipes.recipeAlreadyExist(url: recipe.url){
+        if favoriteRecipes.recipeAlreadyExist(url: recipe.url) {
             presentAlert(alertMessage: "You have already in your favorite")
         } else {
             
-            let newRecipe = FavoritesRecipes(context: AppDelegate.viewContext)
-            newRecipe.ingredientLines = recipe.ingredientLines
-            newRecipe.image = recipe.image
-            newRecipe.url = recipe.url
-            newRecipe.label = recipe.label
-            newRecipe.ingredients = recipe.ingredients?.description
-            newRecipe.totalTime = recipe.totalTime ?? 0
-            newRecipe.yield = recipe.yield ?? 0
-            newRecipe.imageRecipe = recipe.imageRecipe
-            
-            do {
-                try AppDelegate.viewContext.save()
-                presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite")
-            } catch {
+            switch favoriteRecipes.saveRecipe(recipe: recipe) {
+            case true:
+                presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite \nYou have \(FavoritesRecipes.all.count) recipes saved")
+            case false:
                 presentAlert( alertTitle: "🙁", alertMessage: "Error during save. n/Try again")
             }
         }

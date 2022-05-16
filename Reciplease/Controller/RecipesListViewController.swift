@@ -8,18 +8,18 @@
 import UIKit
 
 class RecipesListViewController: UIViewController {
-// MARK: - Properties
+    // MARK: - Properties
     var recipesList: RecipesDTO?
     var showTrash = true
     var myRecipes = FavoritesRecipes()
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
     }()
-
-// MARK: - IBOutlet
+    
+    // MARK: - IBOutlet
     @IBOutlet weak var recipesListTableView: UITableView!
-   
-// MARK: - Life cycle
+
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if showTrash {
@@ -31,21 +31,15 @@ class RecipesListViewController: UIViewController {
         super.viewWillAppear(animated)
         recipesListTableView.reloadData()
     }
-// MARK: - IBAction
+
+    // MARK: - IBAction
     @objc func deleteAll() {
-        for recipe in FavoritesRecipes.all {
-            AppDelegate.viewContext.delete(recipe)
-        }
-        do {
-            try AppDelegate.viewContext.save()
-            presentAlert(alertTitle: "❌", alertMessage: "You have delete all 🗑")
-        } catch {
-            presentAlert(alertMessage: "An error exist. We don't can remove all")
-        }
+        presentAlert(alertTitle: "Information", alertMessage: myRecipes.deleteAllRecipes())
         recipesListTableView.reloadData()
     }
 }
 
+// MARK: - tableView dataSource
 extension RecipesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberSection = 0
@@ -60,8 +54,7 @@ extension RecipesListViewController: UITableViewDataSource {
             }
             numberSection = recipesList.count
         }
-        
-       return numberSection
+        return numberSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,10 +68,11 @@ extension RecipesListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - TableView Delegate
 extension RecipesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let RecipeDetailsStoryboard = UIStoryboard(name: "RecipeDetails", bundle: nil)
-
+        
         guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
@@ -90,5 +84,16 @@ extension RecipesListViewController: UITableViewDelegate {
             RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
         }
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete, showTrash  {
+            presentAlert(alertTitle: "Information",alertMessage: myRecipes.deleteRecipe(index: indexPath.row))
+            tableView.reloadData()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return showTrash
     }
 }

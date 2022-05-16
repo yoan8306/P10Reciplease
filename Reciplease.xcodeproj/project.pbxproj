@@ -31,6 +31,7 @@
 		5F956712281AABBB00B5C843 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F956711281AABBB00B5C843 /* RecipleaseTests.swift */; };
 		5F95671C281AABBB00B5C843 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F95671B281AABBB00B5C843 /* RecipleaseUITests.swift */; };
 		5F95671E281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F95671D281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift */; };
+		5FD305472831A6E900B2D395 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD305462831A6E900B2D395 /* Recipes.swift */; };
 		5FEB3F1D281C7B0D00BFFC56 /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */; };
 		C253B1A33B58C0FA3D1E8E53 /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD8193E4402CC244565A018 /* Pods_Reciplease.framework */; };
 		CCBA52D3F31185DAD3FC2350 /* Pods_Reciplease_RecipleaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CC13D20D178F95B940C9DB /* Pods_Reciplease_RecipleaseUITests.framework */; };
@@ -88,6 +89,7 @@
 		5F956717281AABBB00B5C843 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F95671B281AABBB00B5C843 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		5F95671D281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5FD305462831A6E900B2D395 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
 		7DD8193E4402CC244565A018 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B301FFE314DCC4C5F5526DB4 /* Pods-RecipleaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.release.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				5F6B73E8281DCF3600097B27 /* IngredientsList.swift */,
 				5F6BACCB282E4D2100653D13 /* FavoritesRecipes.swift */,
+				5FD305462831A6E900B2D395 /* Recipes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				5F6B73ED281DE61200097B27 /* listRecipesTableViewCell.swift in Sources */,
 				5F510BCE282710F0004C89F3 /* ApiKey.swift in Sources */,
 				5F6B73E9281DCF3600097B27 /* IngredientsList.swift in Sources */,
+				5FD305472831A6E900B2D395 /* Recipes.swift in Sources */,
 				5F510BC928270BD0004C89F3 /* recipeService.swift in Sources */,
 				5FEB3F1D281C7B0D00BFFC56 /* SearchRecipeViewController.swift in Sources */,
 				5F6BACCC282E4D2100653D13 /* FavoritesRecipes.swift in Sources */,
