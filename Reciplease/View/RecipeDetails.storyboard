@@ -144,6 +144,7 @@
                         <outlet property="activityIndicator" destination="mfJ-Ph-Glm" id="mSD-sO-Abf"/>
                         <outlet property="backgroundLabelUIView" destination="tWJ-Oz-Mb1" id="K7d-h1-FIm"/>
                         <outlet property="favoriteItem" destination="n2x-sZ-YhI" id="QOZ-Te-zWj"/>
+                        <outlet property="getDirectionButton" destination="Bs1-d0-8RO" id="6l6-PS-zhe"/>
                         <outlet property="recipeDetailTableView" destination="exG-1q-fLw" id="lRi-J9-8Qq"/>
                         <outlet property="recipeImageView" destination="OQt-CX-JQE" id="Go8-dt-srO"/>
                         <outlet property="recipeTitle" destination="eRS-FD-jE0" id="zar-79-0us"/>

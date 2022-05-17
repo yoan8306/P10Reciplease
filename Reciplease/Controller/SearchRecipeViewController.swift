@@ -15,10 +15,15 @@ class SearchRecipeViewController: UIViewController {
     @IBOutlet weak var searchRecipeButton: UIButton!
     @IBOutlet weak var ListIngredientsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    
+    
 
 // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeView()
     }
 
 // MARK: - IBAction
@@ -79,6 +84,13 @@ class SearchRecipeViewController: UIViewController {
     private func showActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
         searchRecipeButton.isHidden = shown
+    }
+    
+    private func initializeView() {
+        searchRecipeButton.layer.cornerRadius = searchRecipeButton.frame.height/2
+        addButton.layer.cornerRadius = addButton.frame.height/2
+        clearButton.layer.cornerRadius = clearButton.frame.height/2
+       
     }
 }
 

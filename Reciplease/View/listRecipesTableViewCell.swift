@@ -83,7 +83,7 @@ class listRecipesTableViewCell: UITableViewCell {
         recipesTitle.text = recipe.hits?[index].recipe?.label ?? "No title"
         ingredientsList.text = getIngredients(recipe: recipe, index: index)
         totalTime.text = "\(String(recipe.hits?[index].recipe?.totalTime ?? 0)): min ⏲"
-        scoreRecipe.text = "\(String(recipe.hits?[index].recipe?.yield ?? 0))/10 👍"
+        scoreRecipe.text = "\(String(recipe.hits?[index].recipe?.yield ?? 0))K 👍"
 
     }
 
