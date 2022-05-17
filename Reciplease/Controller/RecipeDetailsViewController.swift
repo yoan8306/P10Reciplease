@@ -20,20 +20,25 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeDetailTableView: UITableView!
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
+    @IBOutlet weak var getDirectionButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
 
 // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let screenHeight = UIScreen.main.bounds.height
-        NSLayoutConstraint.activate([recipeImageView.heightAnchor.constraint(equalToConstant: screenHeight/3)])
+//        let screenHeight = UIScreen.main.bounds.height
+//        NSLayoutConstraint.activate([recipeImageView.heightAnchor.constraint(equalToConstant: screenHeight/3)])
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
     }
 
 // MARK: - IBAction
     @IBAction func getDirectionAction() {
-        
+        guard let url = URL(string: (favoriteRecipes.url ?? myRecipe?.url) ?? "") else {
+            presentAlert(alertMessage: "We can't open recipe")
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
@@ -42,33 +47,29 @@ class RecipeDetailsViewController: UIViewController {
     }
 
 // MARK: - Private function
+   
+    
     private func initializeView() {
-        let gradient = CAGradientLayer()
-        
-        if favoritePage {
-            getImageService(urlImage: favoriteRecipes.image)
-            favoriteItem.image = UIImage(systemName: "star.fill")
-        } else {
-            checkRecipe(recipe: myRecipe)
-            getImageService(urlImage: myRecipe?.image)
-        }
-        
-        gradient.frame = backgroundLabelUIView.bounds
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        
-        backgroundLabelUIView.layer.insertSublayer(gradient, at: 0)
-        recipeTitle.text = myRecipe?.label
+        insertGradient()
+        recipeTitle.text = myRecipe?.label ?? favoriteRecipes.label
+        checkRecipeInFavorite(recipe: myRecipe?.url ?? favoriteRecipes.url ?? "" )
+        getImageService(urlImage: myRecipe?.image ?? favoriteRecipes.image)
+        getDirectionButton.layer.cornerRadius = getDirectionButton.frame.height/2
     }
     
-    private func checkRecipe(recipe: RecipeDetails?) {
-        guard let myRecipe = myRecipe else {
-            return
-        }
-       
-        if favoriteRecipes.recipeAlreadyExist(url: myRecipe.url) {
+    private func insertGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = backgroundLabelUIView.bounds
+        backgroundLabelUIView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        backgroundLabelUIView.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    private func checkRecipeInFavorite(recipe: String) {
+        switch favoriteRecipes.recipeAlreadyExist(url: recipe) {
+        case true:
             favoriteItem.image = UIImage(systemName: "star.fill")
-        }
-        else {
+        case false:
             favoriteItem.image = UIImage(systemName: "star")
         }
     }
