@@ -18,7 +18,7 @@ class FavoritesRecipes:NSManagedObject {
         return recipes
     }
     
-    func recipeAlreadyExist(url: String?) -> Bool {
+   static func recipeAlreadyExist(url: String?) -> Bool {
         guard let url = url else {
             return false
         }
@@ -32,7 +32,7 @@ class FavoritesRecipes:NSManagedObject {
         }
     }
     
-    func saveRecipe(recipe: RecipeDetails?) -> Bool {
+   static func saveRecipe(recipe: RecipeDetails?) -> Bool {
         guard let recipe = recipe else {
             return false
         }
