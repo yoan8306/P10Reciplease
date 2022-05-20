@@ -25,15 +25,5 @@ class ImageRecipeService {
                 callBack(.failure(error))
             }
         }
-        
-//        AF.request(url)
-//            .validate(statusCode: 200..<400)
-//            .response(queue: DispatchQueue.global(qos: .background), completionHandler: { (response) in
-//                guard let data = response.data else {
-//                    callBack(.failure(response.error ?? APIError.noData))
-//                    return
-//                }
-//                callBack(.success(data))
-//            })
     }
 }

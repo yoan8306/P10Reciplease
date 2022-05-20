@@ -34,7 +34,7 @@ class RecipesListViewController: UIViewController {
 
     // MARK: - IBAction
     @objc func deleteAll() {
-        presentAlert(alertTitle: "Information", alertMessage: myRecipes.deleteAllRecipes())
+        CoreDataManager.shared.deleteAllRecipes()
         recipesListTableView.reloadData()
     }
 }
@@ -46,7 +46,7 @@ extension RecipesListViewController: UITableViewDataSource {
         if showTrash {
             numberSection = FavoritesRecipes.all.count
             if case numberSection = 0 {
-                presentAlert(alertMessage: "You have no favorite... 🥺")
+                presentAlertError(alertMessage: "You have no favorite... 🥺")
             }
         } else {
             guard let recipesList = recipesList?.hits else {
@@ -59,11 +59,13 @@ extension RecipesListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
+        var myRecipe = RecipeDetailsEntity()
         if showTrash {
-            cell.configureFavoriteCell(recipe: FavoritesRecipes.all, index: indexPath.row)
+            myRecipe = FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
         } else {
-            cell.configureCell(recipe: recipesList, index: indexPath.row)
+            myRecipe = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
         }
+        cell.configureCellEntity(recipe: myRecipe)
         return cell
     }
 }
@@ -78,17 +80,26 @@ extension RecipesListViewController: UITableViewDelegate {
         }
         if showTrash {
             RecipeDetailsViewController.favoritePage = true
-            RecipeDetailsViewController.favoriteRecipes = FavoritesRecipes.all[indexPath.row]
+            RecipeDetailsViewController.recipeDetail =  FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
         } else {
             RecipeDetailsViewController.favoritePage = false
-            RecipeDetailsViewController.myRecipe = recipesList?.hits?[indexPath.row].recipe
+            RecipeDetailsViewController.recipeDetail = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
         }
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete, showTrash  {
-            presentAlert(alertTitle: "Information",alertMessage: myRecipes.deleteRecipe(index: indexPath.row))
+        let recipeSelected = FavoritesRecipes.all[indexPath.row].url
+              
+            CoreDataManager.shared.deleteRecipe(recipe: recipeSelected){ result in
+                switch result {
+                case .success(_):
+                    self.presentAlertSuccess(alertMessage: "Your recipe has been removed from your favorite")
+                case .failure(let error):
+                    self.presentAlertError(alertMessage: error.localizedDescription)
+                }
+            }
             tableView.reloadData()
         }
     }

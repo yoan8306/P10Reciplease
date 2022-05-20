@@ -37,7 +37,7 @@ class SearchRecipeViewController: UIViewController {
             ingredientsTextField.resignFirstResponder()
             ListIngredientsTableView.reloadData()
         } else {
-            presentAlert(alertMessage: "You can separate ingredient list with \",\"\nTry again 😉")
+            presentAlertError(alertMessage: "You can separate ingredient list with \",\"\nTry again 😉")
         }
     }
 
@@ -62,7 +62,7 @@ class SearchRecipeViewController: UIViewController {
                 case .success(let recipes):
                     self.transferRecipesToRecipesListViewController(recipesList: recipes)
                 case .failure(let error):
-                    self.presentAlert(alertMessage: error.localizedDescription)
+                    self.presentAlertError(alertMessage: error.localizedDescription)
                 }
                 self.showActivityIndicator(shown: false)
             }

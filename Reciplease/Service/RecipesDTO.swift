@@ -24,7 +24,32 @@ struct RecipeDetails: Decodable {
     var ingredientLines: [String]?
     var totalTime: Double?
     var ingredients: [IngredientsData]?
-    var imageRecipe: Data?
+    var ingredientsString: String?
+    
+    mutating func asEntity() -> RecipeDetailsEntity {
+        convertIngredientsToString()
+       return RecipeDetailsEntity(label: label,
+                            image: image,
+                            url: url,
+                            yield: yield,
+                            ingredientLines: ingredientLines,
+                            totalTime: totalTime,
+                            ingredients: ingredientsString)
+    }
+    
+    mutating func convertIngredientsToString() {
+        var arrayIngredients: [String] = []
+        guard let ingredients = ingredients else {
+            return
+        }
+        for element in ingredients {
+            guard let food = element.food else {
+                return
+            }
+            arrayIngredients.append(food)
+        }
+        ingredientsString = arrayIngredients.joined(separator: ", ")
+    }
 }
 
 struct IngredientsData: Decodable {

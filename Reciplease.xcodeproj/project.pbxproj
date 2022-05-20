@@ -28,9 +28,14 @@
 		5F956702281AABB900B5C843 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F956700281AABB900B5C843 /* Reciplease.xcdatamodeld */; };
 		5F956704281AABBB00B5C843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F956703281AABBB00B5C843 /* Assets.xcassets */; };
 		5F956707281AABBB00B5C843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F956705281AABBB00B5C843 /* LaunchScreen.storyboard */; };
-		5F956712281AABBB00B5C843 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F956711281AABBB00B5C843 /* RecipleaseTests.swift */; };
 		5F95671C281AABBB00B5C843 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F95671B281AABBB00B5C843 /* RecipleaseUITests.swift */; };
 		5F95671E281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F95671D281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift */; };
+		5FA8220028363BD700C91099 /* mockSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA821FF28363BD700C91099 /* mockSessionTask.swift */; };
+		5FA8220228363EBC00C91099 /* RecipesList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FA8220128363EBC00C91099 /* RecipesList.json */; };
+		5FA8220428363F3400C91099 /* RecipeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8220328363F3400C91099 /* RecipeServiceTest.swift */; };
+		5FA82206283642A200C91099 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA82205283642A200C91099 /* FakeResponseData.swift */; };
+		5FA8220828365D5800C91099 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8220728365D5800C91099 /* CoreDataError.swift */; };
+		5FA8220A28365DCD00C91099 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8220928365DCD00C91099 /* CoreDataManager.swift */; };
 		5FAB564A2835883B00D13ACA /* SessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAB56492835883B00D13ACA /* SessionTask.swift */; };
 		5FD305472831A6E900B2D395 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD305462831A6E900B2D395 /* Recipes.swift */; };
 		5FEB3F1D281C7B0D00BFFC56 /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */; };
@@ -86,10 +91,15 @@
 		5F956706281AABBB00B5C843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F956708281AABBB00B5C843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F95670D281AABBB00B5C843 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F956711281AABBB00B5C843 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		5F956717281AABBB00B5C843 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F95671B281AABBB00B5C843 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		5F95671D281AABBB00B5C843 /* RecipleaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5FA821FF28363BD700C91099 /* mockSessionTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockSessionTask.swift; sourceTree = "<group>"; };
+		5FA8220128363EBC00C91099 /* RecipesList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipesList.json; sourceTree = "<group>"; };
+		5FA8220328363F3400C91099 /* RecipeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTest.swift; sourceTree = "<group>"; };
+		5FA82205283642A200C91099 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		5FA8220728365D5800C91099 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		5FA8220928365DCD00C91099 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5FAB56492835883B00D13ACA /* SessionTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTask.swift; sourceTree = "<group>"; };
 		5FD305462831A6E900B2D395 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +209,10 @@
 		5F956710281AABBB00B5C843 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				5F956711281AABBB00B5C843 /* RecipleaseTests.swift */,
+				5FA821FF28363BD700C91099 /* mockSessionTask.swift */,
+				5FA8220128363EBC00C91099 /* RecipesList.json */,
+				5FA8220328363F3400C91099 /* RecipeServiceTest.swift */,
+				5FA82205283642A200C91099 /* FakeResponseData.swift */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -242,6 +255,8 @@
 				5F6B73E8281DCF3600097B27 /* IngredientsList.swift */,
 				5F6BACCB282E4D2100653D13 /* FavoritesRecipes.swift */,
 				5FD305462831A6E900B2D395 /* Recipes.swift */,
+				5FA8220728365D5800C91099 /* CoreDataError.swift */,
+				5FA8220928365DCD00C91099 /* CoreDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FA8220228363EBC00C91099 /* RecipesList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,9 +541,11 @@
 				5F49F2FF28206AF40092B5EC /* UIViewController_Alert.swift in Sources */,
 				5F9566F8281AABB900B5C843 /* AppDelegate.swift in Sources */,
 				5F9566FA281AABB900B5C843 /* SceneDelegate.swift in Sources */,
+				5FA8220828365D5800C91099 /* CoreDataError.swift in Sources */,
 				5F510BCB28270F8F004C89F3 /* RecipesDTO.swift in Sources */,
 				5F49F2FC281FE6520092B5EC /* RecipeDetailsViewController.swift in Sources */,
 				5F4173972825417600B614A5 /* APIError.swift in Sources */,
+				5FA8220A28365DCD00C91099 /* CoreDataManager.swift in Sources */,
 				5F6034702828E05500EE2580 /* ImageRecipeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,7 +554,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F956712281AABBB00B5C843 /* RecipleaseTests.swift in Sources */,
+				5FA8220028363BD700C91099 /* mockSessionTask.swift in Sources */,
+				5FA8220428363F3400C91099 /* RecipeServiceTest.swift in Sources */,
+				5FA82206283642A200C91099 /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

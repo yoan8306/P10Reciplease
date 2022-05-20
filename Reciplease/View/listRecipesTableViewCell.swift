@@ -27,26 +27,11 @@ class listRecipesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureFavoriteCell(recipe: [FavoritesRecipes], index: Int) {
-        guard let urlImage = recipe[index].image else {
-            return
-        }
-        addGradient()
-        recipesTitle.text = recipe[index].label
-        ingredientsList.text = recipe[index].ingredientLines?.joined(separator: ", ")
-        totalTime.text = "\(String(recipe[index].totalTime)): min ⏲"
-        scoreRecipe.text = "\(String(recipe[index].yield))/10 👍"
-        getImageService(urlImage)
-    }
     
-
-    func configureCell(recipe: RecipesDTO?, index: Int) {
-        guard let recipe = recipe, let urlImage = recipe.hits?[index].recipe?.image  else {
-            return
-        }
+    func configureCellEntity(recipe: RecipeDetailsEntity) {
         addGradient()
-        getImageService(urlImage)
-        configureTextCell(recipe: recipe, index: index)
+        getImageService(recipe.image ?? "")
+        configureTextCell(recipe: recipe)
     }
 
    private func addGradient() {
@@ -59,11 +44,11 @@ class listRecipesTableViewCell: UITableViewCell {
 }
 
     private func getImageService(_ urlImage: String) {
+            toggleActivityIndicator(shown: true)
         ImageRecipeService.shared.getImage(link: urlImage) { [weak self] callBack in
             guard let self = self else {
                 return
             }
-            self.toggleActivityIndicator(shown: true)
             DispatchQueue.main.async {
                 if case .success(let image) = callBack {
                     self.imageRecipe.image = UIImage(data: image)
@@ -79,23 +64,11 @@ class listRecipesTableViewCell: UITableViewCell {
         activityIndicator.isHidden = !shown
     }
 
-    private func configureTextCell(recipe: RecipesDTO, index: Int) {
-        recipesTitle.text = recipe.hits?[index].recipe?.label ?? "No title"
-        ingredientsList.text = getIngredients(recipe: recipe, index: index)
-        totalTime.text = "\(String(recipe.hits?[index].recipe?.totalTime ?? 0)): min ⏲"
-        scoreRecipe.text = "\(String(recipe.hits?[index].recipe?.yield ?? 0))K 👍"
+    private func configureTextCell(recipe: RecipeDetailsEntity) {
+        recipesTitle.text = recipe.label ?? "No title"
+        ingredientsList.text = recipe.ingredients ?? "No list"
+        totalTime.text = "\(String(recipe.totalTime ?? 0)): min ⏲"
+        scoreRecipe.text = "\(String(recipe.yield ?? 0))K 👍"
 
-    }
-
-    private func getIngredients(recipe: RecipesDTO, index: Int) -> String {
-        var listIngredients: [String] = []
-        guard let ingredients = recipe.hits?[index].recipe?.ingredients else {
-            return "nul"
-        }
-            for ingredient in ingredients {
-                listIngredients.append(ingredient.food ?? "N/A")
-            }
-
-        return listIngredients.joined(separator: ", ")
     }
 }

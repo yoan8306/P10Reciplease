@@ -7,7 +7,13 @@
 
 import Foundation
 
-class Recipes {
-    var favorites: FavoritesRecipes?
-    var array: [Recipe]?
+struct RecipeDetailsEntity {
+        var label: String?
+        var image: String?
+        var url: String?
+        var yield: Double?
+        var ingredientLines: [String]?
+        var totalTime: Double?
+        var ingredients: String?
+
 }

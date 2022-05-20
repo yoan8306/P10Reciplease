@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <tabBarAppearance key="standardAppearance" stackedItemPositioning="fill">
                             <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </tabBarAppearance>
@@ -59,19 +58,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T8z-17-XwM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="4S3-D8-FWa">
-                        <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large" renderingMode="hierarchical">
-                            <hierarchicalColors>
-                                <color red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                        <color key="badgeColor" red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PoN-eu-UHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,19 +88,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T3m-GY-ptx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" id="uhw-m2-8ax">
-                        <imageReference key="image" image="star.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
-                            <hierarchicalColors>
-                                <color red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                        <color key="badgeColor" red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageReference key="image" image="star.fill" catalog="system" symbolScale="large"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zsf-G6-lhS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,13 +116,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="magnifyingglass" catalog="system" width="32" height="32"/>
+        <image name="star.fill" catalog="system" width="32" height="32"/>
     </resources>
 </document>

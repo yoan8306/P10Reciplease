@@ -14,11 +14,10 @@ protocol SessionTaskProtocol {
 
 class SessionTask: SessionTaskProtocol {
     static let shared = SessionTask()
-    var session = Session()
     private init() {}
     
     func sendTask(url: String, callBack: @escaping (Result<Data, Error>) -> Void) {
-        session.request(url)
+        AF.request(url)
             .validate(statusCode: 200..<400)
             .response(queue: DispatchQueue.global(qos: .background), completionHandler: { (response) in
                 guard let data = response.data else {
@@ -27,5 +26,7 @@ class SessionTask: SessionTaskProtocol {
                 }
                 callBack(.success(data))
             })
+        
+        
     }
 }
