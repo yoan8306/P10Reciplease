@@ -2,7 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FavoritesRecipes" representedClassName=".FavoritesRecipes" syncable="YES" codeGenerationType="category">
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="imageRecipe" optional="YES" attributeType="Binary"/>
         <attribute name="ingredientLines" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName=".Array&lt;String&gt;"/>
         <attribute name="ingredients" optional="YES" attributeType="String"/>
         <attribute name="label" optional="YES" attributeType="String"/>
@@ -14,7 +13,7 @@
         <attribute name="food" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="FavoritesRecipes" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="FavoritesRecipes" positionX="-63" positionY="-18" width="128" height="134"/>
         <element name="Ingredient" positionX="-63" positionY="45" width="128" height="44"/>
     </elements>
 </model>

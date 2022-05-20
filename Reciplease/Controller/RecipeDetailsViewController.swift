@@ -8,12 +8,12 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-
-// MARK: - Properties
+    
+    // MARK: - Properties
     var favoritePage = false
     var recipeDetail = RecipeDetailsEntity()
-
-// MARK: - IBOutlet
+    
+    // MARK: - IBOutlet
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
     @IBOutlet weak var recipeDetailTableView: UITableView!
@@ -21,15 +21,15 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
     @IBOutlet weak var getDirectionButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
-
-// MARK: - Life cycle
+    
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
     }
-
-// MARK: - IBAction
+    
+    // MARK: - IBAction
     @IBAction func getDirectionAction() {
         guard let url = URL(string: (recipeDetail.url ?? "www.edamam.com")) else {
             presentAlertError(alertMessage: "We can't open recipe")
@@ -53,11 +53,10 @@ class RecipeDetailsViewController: UIViewController {
             favoriteItem.image = UIImage(systemName: "star.fill")
             addRecipe(recipe: recipeDetail)
         }
-        
     }
-
-
-// MARK: - Private function
+    
+    
+    // MARK: - Private function
     private func initializeView() {
         insertGradient()
         recipeTitle.text = recipeDetail.label ?? "No title"
@@ -88,7 +87,7 @@ class RecipeDetailsViewController: UIViewController {
         guard let urlImage = urlImage else {
             return
         }
-
+        
         ImageRecipeService.shared.getImage(link: urlImage) { [weak self] callBack in
             guard let self = self else {
                 return
@@ -109,17 +108,22 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     private func addRecipe(recipe: RecipeDetailsEntity) {
-        
-        if CoreDataManager.shared.recipeAlreadyExist(url: recipe.url) {
+        switch CoreDataManager.shared.recipeAlreadyExist(url: recipe.url) {
+        case true:
             presentAlertError(alertMessage: "You have already in your favorite")
-        } else {
             
-            switch CoreDataManager.shared.saveRecipe(recipe: recipe) {
-            case true:
-               presentAlertSuccess(alertMessage: "Save success 👍 you have \(FavoritesRecipes.all.count) recipes saved")
-            case false:
-                presentAlertError(alertMessage: CoreDataError.saveError.detail)
-            }
+        case false:
+            saveRecipe(recipe)
+        }
+    }
+    
+    private func saveRecipe(_ recipe: RecipeDetailsEntity) {
+        switch CoreDataManager.shared.saveRecipe(recipe: recipe) {
+        case true:
+            presentAlertSuccess(alertMessage: "Save success 👍 you have \(FavoritesRecipes.all.count) recipes saved")
+            
+        case false:
+            presentAlertError(alertMessage: CoreDataError.saveError.detail)
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-// MARK: Properties to Parse and Get Data
+
 struct RecipesDTO: Decodable {
     var hits: [Recipe]?
 }
@@ -28,13 +28,13 @@ struct RecipeDetails: Decodable {
     
     mutating func asEntity() -> RecipeDetailsEntity {
         convertIngredientsToString()
-       return RecipeDetailsEntity(label: label,
-                            image: image,
-                            url: url,
-                            yield: yield,
-                            ingredientLines: ingredientLines,
-                            totalTime: totalTime,
-                            ingredients: ingredientsString)
+        return RecipeDetailsEntity(label: label,
+                                   image: image,
+                                   url: url,
+                                   yield: yield,
+                                   ingredientLines: ingredientLines,
+                                   totalTime: totalTime,
+                                   ingredients: ingredientsString)
     }
     
     mutating func convertIngredientsToString() {

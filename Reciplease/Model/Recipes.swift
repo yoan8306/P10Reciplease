@@ -15,5 +15,4 @@ struct RecipeDetailsEntity {
         var ingredientLines: [String]?
         var totalTime: Double?
         var ingredients: String?
-
 }

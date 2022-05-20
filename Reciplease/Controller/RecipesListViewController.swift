@@ -34,7 +34,14 @@ class RecipesListViewController: UIViewController {
 
     // MARK: - IBAction
     @objc func deleteAll() {
-        CoreDataManager.shared.deleteAllRecipes()
+        CoreDataManager.shared.deleteAllRecipes { result in
+            switch result {
+            case .success(_):
+                presentAlertSuccess(alertMessage: "You have delete all recipes")
+            case .failure(let error):
+                presentAlertError(alertMessage: error.localizedDescription)
+            }
+        }
         recipesListTableView.reloadData()
     }
 }
@@ -60,11 +67,14 @@ extension RecipesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
         var myRecipe = RecipeDetailsEntity()
-        if showTrash {
+        
+        switch showTrash {
+        case true:
             myRecipe = FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
-        } else {
+        case false:
             myRecipe = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
         }
+
         cell.configureCellEntity(recipe: myRecipe)
         return cell
     }
@@ -78,33 +88,43 @@ extension RecipesListViewController: UITableViewDelegate {
         guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
-        if showTrash {
-            RecipeDetailsViewController.favoritePage = true
-            RecipeDetailsViewController.recipeDetail =  FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
-        } else {
-            RecipeDetailsViewController.favoritePage = false
-            RecipeDetailsViewController.recipeDetail = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
-        }
+        configureViewController(RecipeDetailsViewController, indexPath)
         navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
     }
 
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete, showTrash  {
-        let recipeSelected = FavoritesRecipes.all[indexPath.row].url
-              
-            CoreDataManager.shared.deleteRecipe(recipe: recipeSelected){ result in
-                switch result {
-                case .success(_):
-                    self.presentAlertSuccess(alertMessage: "Your recipe has been removed from your favorite")
-                case .failure(let error):
-                    self.presentAlertError(alertMessage: error.localizedDescription)
-                }
-            }
+            deleteRecipe(indexPath)
             tableView.reloadData()
         }
     }
-
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return showTrash
+    }
+    
+    private func configureViewController(_ RecipeDetailsViewController: RecipeDetailsViewController, _ indexPath: IndexPath) {
+        switch showTrash {
+        case true:
+            RecipeDetailsViewController.favoritePage = true
+            RecipeDetailsViewController.recipeDetail =  FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
+        case false:
+            RecipeDetailsViewController.favoritePage = false
+            RecipeDetailsViewController.recipeDetail = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
+        }
+    }
+    
+    private func deleteRecipe(_ indexPath: IndexPath) {
+        let recipeSelected = FavoritesRecipes.all[indexPath.row].url
+        CoreDataManager.shared.deleteRecipe(recipe: recipeSelected){ result in
+            switch result {
+            case .success(_):
+                self.presentAlertSuccess(alertMessage: "Your recipe has been removed from your favorite")
+            case .failure(let error):
+                self.presentAlertError(alertMessage: error.localizedDescription)
+            }
+        }
     }
 }

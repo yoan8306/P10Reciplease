@@ -16,7 +16,6 @@ class ImageRecipeService {
     }
 
     func getImage(link: String, callBack: @escaping(Result <Data, Error>) -> Void) {
-       
         session.sendTask(url: link) { result in
             switch result {
             case .success(let data):

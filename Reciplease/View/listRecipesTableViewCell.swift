@@ -17,8 +17,6 @@ class listRecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var scoreRecipe: UILabel!
     @IBOutlet weak var totalTime: UILabel!
 
-    var responseReceived = false
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,7 +24,6 @@ class listRecipesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
     
     func configureCellEntity(recipe: RecipeDetailsEntity) {
         addGradient()

@@ -8,9 +8,9 @@
 import UIKit
 
 class SearchRecipeViewController: UIViewController {
-    var listIngredients = IngredientsList()
-
-// MARK: - IBOutlet
+    var userIngredients = IngredientsList()
+    
+    // MARK: - IBOutlet
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var searchRecipeButton: UIButton!
     @IBOutlet weak var ListIngredientsTableView: UITableView!
@@ -19,20 +19,20 @@ class SearchRecipeViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     
     
-
-// MARK: - Life Cycles
+    
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeView()
     }
-
-// MARK: - IBAction
+    
+    // MARK: - IBAction
     @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
         ingredientsTextField.resignFirstResponder()
     }
-
+    
     @IBAction func addIngredientsActionButton() {
-        if listIngredients.addIngredient(ingredientList: ingredientsTextField.text ?? "") {
+        if userIngredients.addIngredient(ingredientList: ingredientsTextField.text ?? "") {
             ingredientsTextField.text = ""
             ingredientsTextField.resignFirstResponder()
             ListIngredientsTableView.reloadData()
@@ -40,17 +40,17 @@ class SearchRecipeViewController: UIViewController {
             presentAlertError(alertMessage: "You can separate ingredient list with \",\"\nTry again 😉")
         }
     }
-
+    
     @IBAction func clearIngredientsActionButton() {
-        listIngredients.clearListIngredient()
+        userIngredients.clearListIngredient()
         ListIngredientsTableView.reloadData()
     }
-
+    
     @IBAction func searchRecipesActionButton() {
-        callRecipes(ingredients: listIngredients.returnIngredientList())
+        callRecipes(ingredients: userIngredients.returnIngredientList())
     }
-
-// MARK: - privates functions
+    
+    // MARK: - privates functions
     private func callRecipes(ingredients: String) {
         showActivityIndicator(shown: true)
         RecipeService.shared.getTheRecipes(ingredients: ingredients) { [weak self] callBack in
@@ -68,19 +68,19 @@ class SearchRecipeViewController: UIViewController {
             }
         }
     }
-
+    
     private func transferRecipesToRecipesListViewController(recipesList: RecipesDTO) {
         let recipesListStoryboard = UIStoryboard(name: "RecipesList", bundle: nil)
-
+        
         guard let recipesListViewController = recipesListStoryboard.instantiateViewController(withIdentifier: "RecipesList") as? RecipesListViewController else {
-         return
+            return
         }
-
+        
         recipesListViewController.recipesList = recipesList
         recipesListViewController.showTrash = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
     }
-
+    
     private func showActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
         searchRecipeButton.isHidden = shown
@@ -90,20 +90,26 @@ class SearchRecipeViewController: UIViewController {
         searchRecipeButton.layer.cornerRadius = searchRecipeButton.frame.height/2
         addButton.layer.cornerRadius = addButton.frame.height/2
         clearButton.layer.cornerRadius = clearButton.frame.height/2
-       
+        
     }
 }
 
 // MARK: - table view data source
 extension SearchRecipeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listIngredients.listIngredient.count
+        return userIngredients.listIngredient.count
     }
-
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        let ingredient = listIngredients.listIngredient[indexPath.row]
-
+        let ingredient = userIngredients.listIngredient[indexPath.row]
+        configureCell(cell: cell, ingredient: ingredient)
+        return cell
+    }
+    
+    private func configureCell(cell: UITableViewCell, ingredient: String) {
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
             content.text = "- " + ingredient
@@ -113,14 +119,14 @@ extension SearchRecipeViewController: UITableViewDataSource {
         } else {
             cell.textLabel?.text = ingredient
         }
-        return cell
     }
+    
 }
 // MARK: - TableView delegate
 extension SearchRecipeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            listIngredients.removeIngredient(index: indexPath.row)
+            userIngredients.removeIngredient(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

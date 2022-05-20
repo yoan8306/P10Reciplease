@@ -63,15 +63,15 @@ class CoreDataManager {
          }
      }
      
-    func deleteAllRecipes() {
+    func deleteAllRecipes(completion: (Result<Void, Error>) -> Void) {
          for recipe in FavoritesRecipes.all {
              AppDelegate.viewContext.delete(recipe)
          }
          do {
              try AppDelegate.viewContext.save()
-//            return "You have deletes all 🗑"
+             completion(.success(()))
          } catch {
-//           return "An error exist. We don't can remove all, \nTry again."
-         }
+             completion(.failure(CoreDataError.deleteError))
+        }
      }
 }

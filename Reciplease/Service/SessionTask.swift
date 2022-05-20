@@ -26,7 +26,5 @@ class SessionTask: SessionTaskProtocol {
                 }
                 callBack(.success(data))
             })
-        
-        
     }
 }

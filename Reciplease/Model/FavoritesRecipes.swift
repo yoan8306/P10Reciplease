@@ -29,5 +29,4 @@ class FavoritesRecipes: NSManagedObject {
                                     ingredients: $0.ingredients)
         }
     }
-   
 }
