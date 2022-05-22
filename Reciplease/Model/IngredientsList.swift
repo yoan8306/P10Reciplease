@@ -9,6 +9,7 @@ import Foundation
 
 class IngredientsList {
     var listIngredient: [String]
+    var punctuation = Punctuation.allCases
 
     init() {
         listIngredient = []
