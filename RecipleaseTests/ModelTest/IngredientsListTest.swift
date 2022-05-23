@@ -33,4 +33,36 @@ class IngredientsListTest: XCTestCase {
         
         XCTAssertFalse(verify)
     }
+    
+    func testGivenIngredientList_WhenDeleteOneIngredient_ThenTheIngredientIsRemove() {
+        myList = "Cheese, lemon, tomatoes"
+        
+        let verify = ingredientList.addIngredient(ingredientList: myList)
+        ingredientList.removeIngredient(index: 1)
+        
+        XCTAssertTrue(verify)
+        XCTAssertEqual(["Cheese", "tomatoes"], ingredientList.listIngredient)
+    }
+    
+   func testGivenIngredientList_WhenDeleteAll_ThenTheIngredientListIsClear() {
+        myList = "Cheese, lemon, tomatoes"
+       
+       let verify = ingredientList.addIngredient(ingredientList: myList)
+       ingredientList.clearListIngredient()
+       
+       XCTAssertTrue(verify)
+       XCTAssertEqual([], ingredientList.listIngredient)
+    }
+    
+    func testGivenIngredientList_WhenReturnIngredientList_ThenIngredientIsConvertToStringWithoutSpace() {
+        myList = "Cheese, lemon, tomatoes"
+        
+        let verify = ingredientList.addIngredient(ingredientList: myList)
+        let myString = ingredientList.returnIngredientList()
+        
+        XCTAssertTrue(verify)
+        XCTAssertEqual("Cheese,lemon,tomatoes", myString)
+    }
+
+    
 }

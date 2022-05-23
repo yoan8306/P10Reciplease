@@ -15,7 +15,7 @@ protocol SessionTaskProtocol {
 class SessionTask: SessionTaskProtocol {
     static let shared = SessionTask()
     private init() {}
-    
+
     func sendTask(url: String, callBack: @escaping (Result<Data, Error>) -> Void) {
         AF.request(url)
             .validate(statusCode: 200..<400)

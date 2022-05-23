@@ -11,7 +11,7 @@ import Alamofire
 class ImageRecipeService {
     static var shared = ImageRecipeService(session: SessionTask.shared)
     var session: SessionTaskProtocol
-    private init(session: SessionTaskProtocol) {
+    init(session: SessionTaskProtocol) {
         self.session = session
     }
 
