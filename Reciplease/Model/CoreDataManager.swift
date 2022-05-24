@@ -8,27 +8,25 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+protocol CoreDataManagerInterface {
+    func recipeAlreadyExist(url: String?) -> Bool
+}
+
+class CoreDataManager: CoreDataManagerInterface {
     static var shared = CoreDataManager()
-    
     private init() {}
-    
+
     func recipeAlreadyExist(url: String?) -> Bool {
          guard let url = url else {
              return false
          }
 
-         if FavoritesRecipes.all.contains(where: { recipe in
+         return FavoritesRecipes.all.contains(where: { recipe in
              recipe.url == url
-         }) {
-             return true
-         } else {
-             return false
-         }
+         })
      }
-     
-    func saveRecipe(recipe: RecipeDetailsEntity) -> Bool {
 
+    func saveRecipe(recipe: RecipeDetailsEntity) -> Bool {
          let newRecipe = FavoritesRecipes(context: AppDelegate.viewContext)
          newRecipe.ingredientLines = recipe.ingredientLines
          newRecipe.image = recipe.image
@@ -37,7 +35,7 @@ class CoreDataManager {
          newRecipe.ingredients = recipe.ingredients?.description
          newRecipe.totalTime = recipe.totalTime ?? 0
          newRecipe.yield = recipe.yield ?? 0
-         
+
          do {
              try AppDelegate.viewContext.save()
              return true
@@ -45,15 +43,17 @@ class CoreDataManager {
              return false
          }
      }
-     
-    func deleteRecipe(recipe url: String?, completion: (Result<Void, Error>) -> Void) {
-         let recipesList = FavoritesRecipes.all
-        guard let url = url, let index = recipesList.firstIndex(where: {$0.url == url}) else {
+    
+    func deleteRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
+        let recipesList = FavoritesRecipes.favoriteRecipeEntities()
+        guard let index = recipesList.firstIndex(where: { $0 == recipe }) else {
             completion(.failure(CoreDataError.deleteError))
             return
         }
+
+        let recipeToDelete = FavoritesRecipes.all[index]
        
-        AppDelegate.viewContext.delete(recipesList[index])
+        AppDelegate.viewContext.delete(recipeToDelete)
          do {
              try AppDelegate.viewContext.save()
              completion(.success(()))

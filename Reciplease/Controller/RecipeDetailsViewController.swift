@@ -41,7 +41,7 @@ class RecipeDetailsViewController: UIViewController {
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
         if CoreDataManager.shared.recipeAlreadyExist(url: recipeDetail.url) {
             favoriteItem.image = UIImage(systemName: "star")
-            CoreDataManager.shared.deleteRecipe(recipe: recipeDetail.url) { result in
+            CoreDataManager.shared.deleteRecipe(recipe: recipeDetail) { result in
                 switch result {
                 case .success(_):
                     self.presentAlertSuccess(alertMessage: "You have delete recipe of your favorites")

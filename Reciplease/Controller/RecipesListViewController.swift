@@ -9,9 +9,8 @@ import UIKit
 
 class RecipesListViewController: UIViewController {
     // MARK: - Properties
-    var recipesList: RecipesDTO?
-    var showTrash = true
-    var myRecipes = FavoritesRecipes()
+    var favoriteMode = true
+    var recipesListEntities: [RecipeDetailsEntity] = []
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAll))
     }()
@@ -22,7 +21,8 @@ class RecipesListViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if showTrash {
+        if favoriteMode {
+            recipesListEntities = FavoritesRecipes.favoriteRecipeEntities()
             navigationItem.rightBarButtonItem = trashBarItem
         }
     }
@@ -49,33 +49,14 @@ class RecipesListViewController: UIViewController {
 // MARK: - tableView dataSource
 extension RecipesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberSection = 0
-        if showTrash {
-            numberSection = FavoritesRecipes.all.count
-            if case numberSection = 0 {
-                presentAlertError(alertMessage: "You have no favorite... 🥺")
-            }
-        } else {
-            guard let recipesList = recipesList?.hits else {
-                return 0
-            }
-            numberSection = recipesList.count
-        }
-        return numberSection
+       
+        return recipesListEntities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
-        var myRecipe = RecipeDetailsEntity()
         
-        switch showTrash {
-        case true:
-            myRecipe = FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
-        case false:
-            myRecipe = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
-        }
-
-        cell.configureCellEntity(recipe: myRecipe)
+        cell.configureCellEntity(recipe: recipesListEntities[indexPath.row])
         return cell
     }
 }
@@ -83,42 +64,33 @@ extension RecipesListViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension RecipesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let RecipeDetailsStoryboard = UIStoryboard(name: "RecipeDetails", bundle: nil)
+        let recipeDetailsStoryboard = UIStoryboard(name: "RecipeDetails", bundle: nil)
         
-        guard let RecipeDetailsViewController = RecipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
+        guard let recipeDetailsViewController = recipeDetailsStoryboard.instantiateViewController(withIdentifier: "RecipeDetails") as? RecipeDetailsViewController else {
             return
         }
-        configureViewController(RecipeDetailsViewController, indexPath)
-        navigationController?.pushViewController(RecipeDetailsViewController, animated: true)
+        configureViewController(recipeDetailsViewController, indexPath)
+        navigationController?.pushViewController(recipeDetailsViewController, animated: true)
     }
 
-    
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete, showTrash  {
+        if editingStyle == .delete, favoriteMode  {
             deleteRecipe(indexPath)
             tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return showTrash
+        return favoriteMode
     }
     
     private func configureViewController(_ RecipeDetailsViewController: RecipeDetailsViewController, _ indexPath: IndexPath) {
-        switch showTrash {
-        case true:
-            RecipeDetailsViewController.favoritePage = true
-            RecipeDetailsViewController.recipeDetail =  FavoritesRecipes.favoriteRecipeEntities()[indexPath.row]
-        case false:
-            RecipeDetailsViewController.favoritePage = false
-            RecipeDetailsViewController.recipeDetail = recipesList?.hits?[indexPath.row].recipe?.asEntity() ?? RecipeDetailsEntity()
-        }
+            RecipeDetailsViewController.favoritePage = favoriteMode
+            RecipeDetailsViewController.recipeDetail =  recipesListEntities[indexPath.row]
     }
     
     private func deleteRecipe(_ indexPath: IndexPath) {
-        let recipeSelected = FavoritesRecipes.all[indexPath.row].url
-        CoreDataManager.shared.deleteRecipe(recipe: recipeSelected){ result in
+        CoreDataManager.shared.deleteRecipe(recipe: recipesListEntities[indexPath.row]){ result in
             switch result {
             case .success(_):
                 self.presentAlertSuccess(alertMessage: "Your recipe has been removed from your favorite")

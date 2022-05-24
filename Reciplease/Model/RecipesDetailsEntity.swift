@@ -16,3 +16,9 @@ struct RecipeDetailsEntity {
         var totalTime: Double?
         var ingredients: String?
 }
+
+extension RecipeDetailsEntity: Equatable {
+    static func == (lhs: RecipeDetailsEntity, rhs: RecipeDetailsEntity) -> Bool {
+       lhs.url == rhs.url && lhs.label == rhs.label && lhs.ingredients == rhs.ingredients
+    }
+}

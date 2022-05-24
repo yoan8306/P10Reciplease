@@ -30,7 +30,6 @@ class ImageServiceTest: XCTestCase {
     func testGivenCallImageService_WhenNoData_ThenResultIsFailed() {
         let session = SessionTaskMock()
         let imageService = ImageRecipeService(session: session)
-        let response = FakeResponseData()
         
         session.data = nil
         

@@ -76,8 +76,8 @@ class SearchRecipeViewController: UIViewController {
             return
         }
         
-        recipesListViewController.recipesList = recipesList
-        recipesListViewController.showTrash = false
+        recipesListViewController.recipesListEntities = recipesList.asEntities()
+        recipesListViewController.favoriteMode = false
         navigationController?.pushViewController(recipesListViewController, animated: true)
     }
     

@@ -9,11 +9,16 @@ import Foundation
 import UIKit
 
 struct RecipesDTO: Decodable {
-    var hits: [Recipe]?
+    var hits: [Recipe]
+    func asEntities() -> [RecipeDetailsEntity] {
+        hits.map { recipe in
+            recipe.recipe.asEntity()
+        }
+    }
 }
 
 struct Recipe: Decodable {
-    var recipe: RecipeDetails?
+    var recipe: RecipeDetails
 }
 
 struct RecipeDetails: Decodable {
@@ -26,29 +31,28 @@ struct RecipeDetails: Decodable {
     var ingredients: [IngredientsData]?
     var ingredientsString: String?
     
-    mutating func asEntity() -> RecipeDetailsEntity {
-        convertIngredientsToString()
-        return RecipeDetailsEntity(label: label,
+    func asEntity() -> RecipeDetailsEntity {
+        RecipeDetailsEntity(label: label,
                                    image: image,
                                    url: url,
                                    yield: yield,
                                    ingredientLines: ingredientLines,
                                    totalTime: totalTime,
-                                   ingredients: ingredientsString)
+                                   ingredients: convertIngredientsToString())
     }
     
-    mutating func convertIngredientsToString() {
+   private func convertIngredientsToString() -> String? {
         var arrayIngredients: [String] = []
         guard let ingredients = ingredients else {
-            return
+            return nil
         }
         for element in ingredients {
             guard let food = element.food else {
-                return
+                continue
             }
             arrayIngredients.append(food)
         }
-        ingredientsString = arrayIngredients.joined(separator: ", ")
+        return arrayIngredients.joined(separator: ", ")
     }
 }
 
