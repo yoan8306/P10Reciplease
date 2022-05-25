@@ -8,16 +8,12 @@
 import Foundation
 import CoreData
 
-protocol CoreDataManagerInterface {
-    func recipeAlreadyExist(url: String?) -> Bool
-}
-
-class CoreDataManager: CoreDataManagerInterface {
+class CoreDataManager {
     static var shared = CoreDataManager()
     private init() {}
 
-    func recipeAlreadyExist(url: String?) -> Bool {
-         guard let url = url else {
+    func recipeAlreadyExist(recipe: RecipeDetailsEntity) -> Bool {
+        guard let url = recipe.url else {
              return false
          }
 

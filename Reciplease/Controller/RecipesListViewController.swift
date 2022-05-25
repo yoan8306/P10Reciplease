@@ -85,7 +85,6 @@ extension RecipesListViewController: UITableViewDelegate {
     }
     
     private func configureViewController(_ RecipeDetailsViewController: RecipeDetailsViewController, _ indexPath: IndexPath) {
-            RecipeDetailsViewController.favoritePage = favoriteMode
             RecipeDetailsViewController.recipeDetail =  recipesListEntities[indexPath.row]
     }
     

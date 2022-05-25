@@ -10,7 +10,6 @@ import UIKit
 class RecipeDetailsViewController: UIViewController {
     
     // MARK: - Properties
-    var favoritePage = false
     var recipeDetail = RecipeDetailsEntity()
     
     // MARK: - IBOutlet
@@ -39,7 +38,7 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
-        if CoreDataManager.shared.recipeAlreadyExist(url: recipeDetail.url) {
+        if CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
             favoriteItem.image = UIImage(systemName: "star")
             CoreDataManager.shared.deleteRecipe(recipe: recipeDetail) { result in
                 switch result {
@@ -74,7 +73,7 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     private func checkRecipeInFavorite(recipe: String) {
-        switch CoreDataManager.shared.recipeAlreadyExist(url: recipe) {
+        switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
         case true:
             favoriteItem.image = UIImage(systemName: "star.fill")
         default:
@@ -108,7 +107,7 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     private func addRecipe(recipe: RecipeDetailsEntity) {
-        switch CoreDataManager.shared.recipeAlreadyExist(url: recipe.url) {
+        switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
         case true:
             presentAlertError(alertMessage: "You have already in your favorite")
             
