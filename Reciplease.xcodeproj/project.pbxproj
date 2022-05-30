@@ -19,7 +19,6 @@
 		5F6B73EB281DE49E00097B27 /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B73EA281DE49E00097B27 /* RecipesListViewController.swift */; };
 		5F6B73ED281DE61200097B27 /* listRecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B73EC281DE61200097B27 /* listRecipesTableViewCell.swift */; };
 		5F6BACCC282E4D2100653D13 /* FavoritesRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BACCB282E4D2100653D13 /* FavoritesRecipes.swift */; };
-		5F6DE4CD283E473A003F21DC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6DE4CC283E473A003F21DC /* CoreDataStack.swift */; };
 		5F7127BC2821434B00E1E886 /* SearchRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7127B828213A2D00E1E886 /* SearchRecipes.storyboard */; };
 		5F7127BD2821435100E1E886 /* RecipeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7127BB28213B9900E1E886 /* RecipeDetails.storyboard */; };
 		5F7127BE2821435400E1E886 /* RecipesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7127BA28213B9900E1E886 /* RecipesList.storyboard */; };
@@ -72,7 +71,6 @@
 		5F6B73EA281DE49E00097B27 /* RecipesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListViewController.swift; sourceTree = "<group>"; };
 		5F6B73EC281DE61200097B27 /* listRecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listRecipesTableViewCell.swift; sourceTree = "<group>"; };
 		5F6BACCB282E4D2100653D13 /* FavoritesRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRecipes.swift; sourceTree = "<group>"; };
-		5F6DE4CC283E473A003F21DC /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5F7127B828213A2D00E1E886 /* SearchRecipes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SearchRecipes.storyboard; path = "/Users/yoan/Documents/Developper/P10/Créez_l'application_Reciplease..._pour_de_bons_petits_plats!_soussand_yoan_052022/Reciplease/Reciplease/View/SearchRecipes.storyboard"; sourceTree = "<absolute>"; };
 		5F7127BA28213B9900E1E886 /* RecipesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = RecipesList.storyboard; path = "/Users/yoan/Documents/Developper/P10/Créez_l'application_Reciplease..._pour_de_bons_petits_plats!_soussand_yoan_052022/Reciplease/Reciplease/View/RecipesList.storyboard"; sourceTree = "<absolute>"; };
 		5F7127BB28213B9900E1E886 /* RecipeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = RecipeDetails.storyboard; path = "/Users/yoan/Documents/Developper/P10/Créez_l'application_Reciplease..._pour_de_bons_petits_plats!_soussand_yoan_052022/Reciplease/Reciplease/View/RecipeDetails.storyboard"; sourceTree = "<absolute>"; };
@@ -158,7 +156,6 @@
 			children = (
 				5F956700281AABB900B5C843 /* Reciplease.xcdatamodeld */,
 				5FA8220928365DCD00C91099 /* CoreDataManager.swift */,
-				5F6DE4CC283E473A003F21DC /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -480,7 +477,6 @@
 				5F9566FA281AABB900B5C843 /* SceneDelegate.swift in Sources */,
 				5FA8220828365D5800C91099 /* CoreDataError.swift in Sources */,
 				5F510BCB28270F8F004C89F3 /* RecipesDTO.swift in Sources */,
-				5F6DE4CD283E473A003F21DC /* CoreDataStack.swift in Sources */,
 				5F49F2FC281FE6520092B5EC /* RecipeDetailsViewController.swift in Sources */,
 				5F4173972825417600B614A5 /* APIError.swift in Sources */,
 				5FA8220A28365DCD00C91099 /* CoreDataManager.swift in Sources */,

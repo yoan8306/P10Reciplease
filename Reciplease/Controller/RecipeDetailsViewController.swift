@@ -117,12 +117,14 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     private func saveRecipe(_ recipe: RecipeDetailsEntity) {
-        switch CoreDataManager.shared.saveRecipe(recipe: recipe) {
-        case true:
-            presentAlertSuccess(alertMessage: "Save success 👍 you have \(FavoritesRecipes.all.count) recipes saved")
-            
-        case false:
-            presentAlertError(alertMessage: CoreDataError.saveError.detail)
+        CoreDataManager.shared.saveRecipe(recipe: recipe) { result in
+            switch result {
+            case .success(_):
+                presentAlertSuccess(alertMessage: "Save success 👍 you have \(FavoritesRecipes.shared.all.count) recipes saved")
+            case .failure(_):
+                presentAlertError(alertMessage: CoreDataError.saveError.detail)
+                
+            }
         }
     }
 }

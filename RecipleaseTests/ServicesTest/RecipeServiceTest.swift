@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import Reciplease
 
 class RecipeServiceTest: XCTestCase {
@@ -13,13 +14,12 @@ class RecipeServiceTest: XCTestCase {
         let session = SessionTaskMock()
         let recipeService = RecipeService(session: session)
         let response = FakeResponseData()
-
         session.data = response.recipesCorrectData
 
         recipeService.getTheRecipes(ingredients: "") { callBack in
             switch callBack {
             case .success(let recipe):
-                let firstTitle = try! XCTUnwrap(recipe.hits![0].recipe?.label)
+                let firstTitle = try! XCTUnwrap(recipe.hits[0].recipe.label)
                 XCTAssertEqual(firstTitle, "Naomi Duguid's Fried Noodles")
 
             case .failure(_):
