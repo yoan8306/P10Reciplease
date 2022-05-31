@@ -120,7 +120,8 @@ class RecipeDetailsViewController: UIViewController {
         CoreDataManager.shared.saveRecipe(recipe: recipe) { result in
             switch result {
             case .success(_):
-                presentAlertSuccess(alertMessage: "Save success 👍 you have recipes saved")
+                let numberFavorites = CoreDataManager.shared.getFavoritesRecipes().count
+                presentAlertSuccess(alertMessage: "Save success 👍 you have \(numberFavorites) recipes saved")
             case .failure(_):
                 presentAlertError(alertMessage: CoreDataError.saveError.detail)
                 

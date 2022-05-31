@@ -17,10 +17,10 @@ class CoreDataManager {
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
-    public lazy var mainContext: NSManagedObjectContext = {
+    lazy var mainContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()
-    public var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
