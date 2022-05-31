@@ -56,6 +56,39 @@ class CoreDataTest: XCTestCase {
         }
     }
     
+    func testGivenAllRecipesAreInFavoritesRecipes_WhenCheckAlreadyExist_ThenResultEqualTrue() {
+        saveAllRecipes()
+        
+        let result = coreDataSource.recipeAlreadyExist(recipe: recipe1)
+        
+        XCTAssertTrue(result)
+    }
+    
+    func testGivenThreeRecipesInFavorites_WhenDeleteOneRecipe_ThenTheyTwoRecipesInFavorites() {
+        saveAllRecipes()
+        
+        coreDataSource.deleteRecipe(recipe: recipe3) { result in
+            switch result {
+            case .success(_):
+               let numberFavorites = coreDataSource.getFavoritesRecipes().count
+                XCTAssertEqual(numberFavorites, 2)
+            case .failure(_):
+                fatalError()
+            }
+        }
+    }
+    
+    func testGivenNoRecipeInFavorites_WhenDeleteRecipeInFavorite_ThenHavingMessage() {
+        coreDataSource.deleteRecipe(recipe: recipe3) { result in
+            switch result {
+            case .success(_):
+                fatalError()
+            case .failure(let error):
+                XCTAssertEqual(error.localizedDescription, CoreDataError.deleteError.localizedDescription)
+            }
+        }
+    }
+
     private func saveAllRecipes() {
         coreDataSource.saveRecipe(recipe: recipe1) { result in
             switch result {
