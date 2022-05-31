@@ -66,6 +66,5 @@ class listRecipesTableViewCell: UITableViewCell {
         ingredientsList.text = recipe.ingredients ?? "No list"
         totalTime.text = "\(String(recipe.totalTime ?? 0)): min ⏲"
         scoreRecipe.text = "\(String(recipe.yield ?? 0))K 👍"
-
     }
 }

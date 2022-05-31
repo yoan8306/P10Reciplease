@@ -10,66 +10,88 @@ import CoreData
 
 class CoreDataManager {
     // MARK: - Properties
-    static var shared = CoreDataManager(modelName: "Reciplease")
-    var persistentContainer: NSPersistentContainer
-    var mainContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-
-    // MARK: - Life cycle
-    init(modelName: String) {
-        persistentContainer = NSPersistentContainer(name: modelName)
-        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            guard let unwrappedError = error else { return }
-            fatalError("Unresolved error \(unwrappedError.localizedDescription)")
-        })
-    }
-
-// MARK: - functions
-    func recipeAlreadyExist(recipe: RecipeDetailsEntity) -> Bool {
-        let recipeList = FavoritesRecipes.favoriteRecipeEntities()
-        return recipeList.contains(recipe)
-     }
-
-    func saveRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
-         let newRecipe = FavoritesRecipes(context: mainContext)
+    static var shared = CoreDataManager()
     
-         newRecipe.ingredientLines = recipe.ingredientLines
-         newRecipe.image = recipe.image
-         newRecipe.url = recipe.url
-         newRecipe.label = recipe.label
-         newRecipe.ingredients = recipe.ingredients?.description
-         newRecipe.totalTime = recipe.totalTime ?? 0
-         newRecipe.yield = recipe.yield ?? 0
+    public static let modelName = "Reciplease"
+    public static let model: NSManagedObjectModel = {
+        let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
+    }()
+   public lazy var mainContext: NSManagedObjectContext = {
+       return persistentContainer.viewContext
+    }()
+   public var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved erre \(error), \(error.userInfo)")
+            }
+        }
+        return container
+    }()
+    
+    // MARK: - Life cycle
+    public init() {
+        
+    }
 
-         save(completion)
-     }
-
+    // MARK: - functions
+    
+    func getFavoritesRecipes() -> [FavoritesRecipes] {
+        let request: NSFetchRequest<FavoritesRecipes> = FavoritesRecipes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
+        guard let recipes = try? mainContext.fetch(request) else {
+            return []
+        }
+        return recipes
+    }
+    
+    func recipeAlreadyExist(recipe: RecipeDetailsEntity) -> Bool {
+        let coreDataFavorites = getFavoritesRecipes()
+        let recipeList = coreDataFavorites.asEntities()
+        return recipeList.contains(recipe)
+    }
+    
+    func saveRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
+        let newRecipe = FavoritesRecipes(context: mainContext)
+        newRecipe.ingredientLines = recipe.ingredientLines
+        newRecipe.image = recipe.image
+        newRecipe.url = recipe.url
+        newRecipe.label = recipe.label
+        newRecipe.ingredients = recipe.ingredients?.description
+        newRecipe.totalTime = recipe.totalTime ?? 0
+        newRecipe.yield = recipe.yield ?? 0
+        
+        save(completion)
+    }
+    
     func deleteRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
-        let recipesList = FavoritesRecipes.favoriteRecipeEntities()
-        guard let index = recipesList.firstIndex(where: { $0 == recipe }) else {
+        let coreDataFavorites = getFavoritesRecipes()
+        let entitiesFavorites = coreDataFavorites.asEntities()
+        guard let index = entitiesFavorites.firstIndex(where: { $0 == recipe }) else {
             completion(.failure(CoreDataError.deleteError))
             return
         }
-       
-        mainContext.delete(FavoritesRecipes.shared.all[index])
+        
+        mainContext.delete(coreDataFavorites[index])
         save(completion)
-     }
+    }
     
     func deleteAllRecipes(completion: (Result<Void, Error>) -> Void) {
-        for recipe in FavoritesRecipes.shared.all {
-             mainContext.delete(recipe)
-         }
+        let coreDataFavorites = getFavoritesRecipes()
+        for recipe in coreDataFavorites {
+            mainContext.delete(recipe)
+        }
         save(completion)
-     }
-
-// MARK: - private function
+    }
+    
+    // MARK: - private function
     private func save(_ completion: (Result<Void, Error>) -> Void) {
         do {
             try mainContext.save()
             completion(.success(()))
         } catch {
-            completion(.failure(CoreDataError.deleteError))
+            completion(.failure(CoreDataError.saveError))
         }
     }
 }

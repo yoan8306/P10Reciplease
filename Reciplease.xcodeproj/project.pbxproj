@@ -35,6 +35,7 @@
 		5FA8220828365D5800C91099 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8220728365D5800C91099 /* CoreDataError.swift */; };
 		5FA8220A28365DCD00C91099 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8220928365DCD00C91099 /* CoreDataManager.swift */; };
 		5FAB564A2835883B00D13ACA /* SessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAB56492835883B00D13ACA /* SessionTask.swift */; };
+		5FB1CBAD2844E2FD00B8C9A1 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB1CBAC2844E2FD00B8C9A1 /* CoreDataTest.swift */; };
 		5FC8413A283A5CC600490AFD /* IngredientsListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC84139283A5CC600490AFD /* IngredientsListTest.swift */; };
 		5FD305472831A6E900B2D395 /* RecipesDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD305462831A6E900B2D395 /* RecipesDetailsEntity.swift */; };
 		5FEB3F1D281C7B0D00BFFC56 /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */; };
@@ -90,6 +91,7 @@
 		5FA8220728365D5800C91099 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		5FA8220928365DCD00C91099 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5FAB56492835883B00D13ACA /* SessionTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTask.swift; sourceTree = "<group>"; };
+		5FB1CBAC2844E2FD00B8C9A1 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		5FC84139283A5CC600490AFD /* IngredientsListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListTest.swift; sourceTree = "<group>"; };
 		5FD305462831A6E900B2D395 /* RecipesDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesDetailsEntity.swift; sourceTree = "<group>"; };
 		5FEB3F1C281C7B0D00BFFC56 /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				5F956700281AABB900B5C843 /* Reciplease.xcdatamodeld */,
 				5FA8220928365DCD00C91099 /* CoreDataManager.swift */,
+				5FA8220728365D5800C91099 /* CoreDataError.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -198,7 +201,7 @@
 		5F956710281AABBB00B5C843 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				5FC84137283A5C6200490AFD /* SupportingFilesTest */,
+				5FB1CBAE2844EEBB00B8C9A1 /* CoreDataTest */,
 				5FC84136283A5BFD00490AFD /* ServicesTest */,
 				5FC84138283A5C8E00490AFD /* ModelTest */,
 			);
@@ -235,7 +238,6 @@
 				5F6B73E8281DCF3600097B27 /* IngredientsList.swift */,
 				5F6BACCB282E4D2100653D13 /* FavoritesRecipes.swift */,
 				5FD305462831A6E900B2D395 /* RecipesDetailsEntity.swift */,
-				5FA8220728365D5800C91099 /* CoreDataError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,9 +264,19 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		5FB1CBAE2844EEBB00B8C9A1 /* CoreDataTest */ = {
+			isa = PBXGroup;
+			children = (
+				5FFF91A8283D7ED70007A34A /* MockCoreDataManager.swift */,
+				5FB1CBAC2844E2FD00B8C9A1 /* CoreDataTest.swift */,
+			);
+			path = CoreDataTest;
+			sourceTree = "<group>";
+		};
 		5FC84136283A5BFD00490AFD /* ServicesTest */ = {
 			isa = PBXGroup;
 			children = (
+				5FC84137283A5C6200490AFD /* SupportingFilesTest */,
 				5FA8220328363F3400C91099 /* RecipeServiceTest.swift */,
 				5F63306A283B9BD80016045E /* ImageRecipeServiceTest.swift */,
 			);
@@ -277,7 +289,6 @@
 				5FA821FF28363BD700C91099 /* SessionTaskMock.swift */,
 				5FA82205283642A200C91099 /* FakeResponseData.swift */,
 				5FA8220128363EBC00C91099 /* RecipesList.json */,
-				5FFF91A8283D7ED70007A34A /* MockCoreDataManager.swift */,
 			);
 			path = SupportingFilesTest;
 			sourceTree = "<group>";
@@ -490,6 +501,7 @@
 			files = (
 				5F63306B283B9BD80016045E /* ImageRecipeServiceTest.swift in Sources */,
 				5FC8413A283A5CC600490AFD /* IngredientsListTest.swift in Sources */,
+				5FB1CBAD2844E2FD00B8C9A1 /* CoreDataTest.swift in Sources */,
 				5FA8220028363BD700C91099 /* SessionTaskMock.swift in Sources */,
 				5FA8220428363F3400C91099 /* RecipeServiceTest.swift in Sources */,
 				5FFF91A9283D7ED70007A34A /* MockCoreDataManager.swift in Sources */,

@@ -26,9 +26,9 @@ struct RecipeDetails: Decodable {
     var image: String?
     var url: String?
     var yield: Double?
-    var ingredientLines: [String]?
+    var ingredientLines: [String]? // ingredients + quantity
     var totalTime: Double?
-    var ingredients: [IngredientsData]?
+    var ingredients: [IngredientsData]? // list ingredients
     var ingredientsString: String?
     
     func asEntity() -> RecipeDetailsEntity {

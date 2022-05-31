@@ -63,6 +63,4 @@ class IngredientsListTest: XCTestCase {
         XCTAssertTrue(verify)
         XCTAssertEqual("Cheese,lemon,tomatoes", myString)
     }
-
-    
 }
