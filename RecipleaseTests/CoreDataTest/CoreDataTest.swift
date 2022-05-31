@@ -14,20 +14,19 @@ class CoreDataTest: XCTestCase {
     var recipe2 = RecipeDetailsEntity()
     var recipe3 = RecipeDetailsEntity()
     var myRecipes: [RecipeDetailsEntity] = []
-    let coreDataSource = MockCoreDataStack()
-    var favoriteRecipes = FavoritesRecipes()
+    var coreDataSource = MockCoreDataManager()
     
     override func setUp() {
         super .setUp()
         createRecipes()
-        clearFavoritesRecipes()
+        coreDataSource = MockCoreDataManager()
     }
     
     func testGivenFavoritesRecipesEqualZeroRecipe_WhenAddOneRecipeIntoFavorite_ThenOneRecipeIsSave() {
         coreDataSource.saveRecipe(recipe: recipe1) { result in
             switch result {
             case .success(_):
-                XCTAssertEqual(favoriteRecipes.all[0].label, recipe1.label)
+                XCTAssertEqual(coreDataSource.getFavoritesRecipes()[0].label, recipe1.label)
             case .failure(_):
                 fatalError()
             }
@@ -37,10 +36,10 @@ class CoreDataTest: XCTestCase {
     func testGivenFavoritesRecipesIsEmpty_WhenAddAllRecipes_ThenFavoritesRecipesAreThreeRecipes() {
         saveAllRecipes()
         
-        XCTAssertEqual(favoriteRecipes.all.count, 3)
-        XCTAssertEqual(favoriteRecipes.all[0].label, recipe1.label)
-        XCTAssertEqual(favoriteRecipes.all[1].url, recipe2.url)
-        XCTAssertEqual(favoriteRecipes.all[2].ingredients, recipe3.ingredients)
+        XCTAssertEqual(coreDataSource.getFavoritesRecipes().count, 3)
+        XCTAssertEqual(coreDataSource.getFavoritesRecipes()[0].label, recipe1.label)
+        XCTAssertEqual(coreDataSource.getFavoritesRecipes()[1].url, recipe2.url)
+        XCTAssertEqual(coreDataSource.getFavoritesRecipes()[2].ingredients, recipe3.ingredients)
     }
 
     
@@ -50,23 +49,10 @@ class CoreDataTest: XCTestCase {
         coreDataSource.deleteAllRecipes { result in
             switch result {
             case .success(_):
-                XCTAssertEqual(favoriteRecipes.all.count, 0)
+                XCTAssertEqual(coreDataSource.getFavoritesRecipes().count, 0)
             case .failure(_):
                 fatalError()
             }
-        }
-    }
-
-    private func clearFavoritesRecipes() {
-        favoriteRecipes = FavoritesRecipes(context: coreDataSource.mainContext)
-        for recipe in favoriteRecipes.all {
-            favoriteRecipes.mainContext.delete(recipe)
-            print("------",favoriteRecipes.all.count,"-------")
-        }
-        do {
-           try coreDataSource.mainContext.save()
-        } catch {
-            print(CoreDataError.saveError)
         }
     }
     
@@ -75,7 +61,8 @@ class CoreDataTest: XCTestCase {
             switch result {
             case .success(_):
                 print("Recipe1 save")
-            case .failure(_):
+            case .failure(let error):
+                print("-------\(error.localizedDescription)-------")
                 fatalError()
             }
         }

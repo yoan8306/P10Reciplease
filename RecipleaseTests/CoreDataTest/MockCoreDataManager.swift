@@ -9,19 +9,14 @@ import Foundation
 import CoreData
 @testable import Reciplease
 
-final class MockCoreDataStack: CoreDataManager {
-    
-    convenience init() {
-        self.init(modelName: "Reciplease")
-    }
-    
-    override init(modelName: String) {
-        super.init(modelName: modelName)
+final class MockCoreDataManager: CoreDataManager {
 
+    override init() {
+        super.init()
         let persistentStoreDescription = NSPersistentStoreDescription()
         persistentStoreDescription.type = NSInMemoryStoreType
 
-        let container = NSPersistentContainer(name: modelName)
+        let container = NSPersistentContainer(name: CoreDataManager.modelName)
 
         container.persistentStoreDescriptions = [persistentStoreDescription]
 

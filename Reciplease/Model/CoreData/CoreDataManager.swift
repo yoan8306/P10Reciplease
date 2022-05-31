@@ -11,16 +11,16 @@ import CoreData
 class CoreDataManager {
     // MARK: - Properties
     static var shared = CoreDataManager()
-    
-    public static let modelName = "Reciplease"
-    public static let model: NSManagedObjectModel = {
+    static let modelName = "Reciplease"
+    static let model: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
-   public lazy var mainContext: NSManagedObjectContext = {
-       return persistentContainer.viewContext
+    
+    public lazy var mainContext: NSManagedObjectContext = {
+        return persistentContainer.viewContext
     }()
-   public var persistentContainer: NSPersistentContainer = {
+    public var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -29,11 +29,6 @@ class CoreDataManager {
         }
         return container
     }()
-    
-    // MARK: - Life cycle
-    public init() {
-        
-    }
 
     // MARK: - functions
     
@@ -68,11 +63,11 @@ class CoreDataManager {
     func deleteRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
         let coreDataFavorites = getFavoritesRecipes()
         let entitiesFavorites = coreDataFavorites.asEntities()
+        
         guard let index = entitiesFavorites.firstIndex(where: { $0 == recipe }) else {
             completion(.failure(CoreDataError.deleteError))
             return
         }
-        
         mainContext.delete(coreDataFavorites[index])
         save(completion)
     }
