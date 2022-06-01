@@ -24,6 +24,7 @@ class SearchRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeView()
+        initializeAccessibilityHint()
     }
     
     // MARK: - IBAction
@@ -91,6 +92,15 @@ class SearchRecipeViewController: UIViewController {
         addButton.layer.cornerRadius = addButton.frame.height/2
         clearButton.layer.cornerRadius = clearButton.frame.height/2
         
+    }
+    
+    private func initializeAccessibilityHint() {
+        ingredientsTextField.accessibilityHint = "You can separate ingredients by comma. Or keep empty for see suggestions recipes"
+        addButton.accessibilityHint = "Insert your list ingredients in table."
+        ListIngredientsTableView.accessibilityHint = "Swipe left for delete ingredient."
+        searchRecipeButton.accessibilityHint = "Double tap for see recipe list."
+        clearButton.accessibilityHint = "Clear your ingredients list."
+
     }
 }
 
