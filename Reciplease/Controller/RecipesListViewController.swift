@@ -21,7 +21,7 @@ class RecipesListViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        recipesListTableView.estimatedRowHeight = UITableView.automaticDimension
         if favoriteMode {
             navigationItem.rightBarButtonItem = trashBarItem
         }
@@ -66,7 +66,6 @@ extension RecipesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
-        
         cell.configureCellEntity(recipe: recipesListEntities[indexPath.row])
         return cell
     }
@@ -92,6 +91,10 @@ extension RecipesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return favoriteMode
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     private func configureViewController(_ RecipeDetailsViewController: RecipeDetailsViewController, _ indexPath: IndexPath) {
