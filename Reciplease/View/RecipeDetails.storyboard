@@ -31,7 +31,7 @@
                                     <action selector="getDirectionAction" destination="Ogu-Fn-2RY" eventType="touchUpInside" id="Em5-wj-Fjp"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="exG-1q-fLw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="exG-1q-fLw">
                                 <rect key="frame" x="0.0" y="44" width="414" height="709"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="LhG-bE-KJE" userLabel="header">
@@ -41,11 +41,15 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OQt-CX-JQE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="259"/>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWJ-Oz-Mb1">
+                                            <rect key="frame" x="0.0" y="234" width="414" height="25"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRS-FD-jE0">
-                                            <rect key="frame" x="0.0" y="224" width="414" height="35"/>
+                                            <rect key="frame" x="0.0" y="234" width="414" height="25"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="5yo-QR-Gl1"/>
-                                                <constraint firstAttribute="height" constant="35" id="HLS-Rd-Ge9"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,7 +59,6 @@
                                             <rect key="frame" x="0.0" y="259" width="414" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="cBh-f8-3qk"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="dzZ-qO-QPS"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,10 +69,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="color" red="0.26791480179999999" green="0.58452332019999997" blue="0.35152173040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </activityIndicatorView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWJ-Oz-Mb1">
-                                            <rect key="frame" x="0.0" y="224" width="414" height="35"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="sX5-Ag-BEq" firstAttribute="top" secondItem="OQt-CX-JQE" secondAttribute="bottom" id="2n4-s4-mDn"/>

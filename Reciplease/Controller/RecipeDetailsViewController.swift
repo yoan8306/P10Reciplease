@@ -8,13 +8,11 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-
-// MARK: - Properties
-    var myRecipe: RecipeDetails?
-    var favoritePage = false
-    var favoriteRecipes = FavoritesRecipes()
-
-// MARK: - IBOutlet
+    
+    // MARK: - Properties
+    var recipeDetail = RecipeDetailsEntity()
+    
+    // MARK: - IBOutlet
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
     @IBOutlet weak var recipeDetailTableView: UITableView!
@@ -22,38 +20,47 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
     @IBOutlet weak var getDirectionButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
-
-// MARK: - Life cycle
+    
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let screenHeight = UIScreen.main.bounds.height
-//        NSLayoutConstraint.activate([recipeImageView.heightAnchor.constraint(equalToConstant: screenHeight/3)])
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
     }
-
-// MARK: - IBAction
+    
+    // MARK: - IBAction
     @IBAction func getDirectionAction() {
-        guard let url = URL(string: (favoriteRecipes.url ?? myRecipe?.url) ?? "") else {
-            presentAlert(alertMessage: "We can't open recipe")
+        guard let url = URL(string: (recipeDetail.url ?? "www.edamam.com")) else {
+            presentAlertError(alertMessage: "We can't open recipe")
             return
         }
         UIApplication.shared.open(url)
     }
     
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
-        favoriteItem.image = UIImage(systemName: "star.fill")
-        addRecipe(recipe: myRecipe)
+        if CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
+            favoriteItem.image = UIImage(systemName: "star")
+            CoreDataManager.shared.deleteRecipe(recipe: recipeDetail) { result in
+                switch result {
+                case .success(_):
+                    self.presentAlertSuccess(alertMessage: "You have delete recipe of your favorites")
+                case .failure(let error):
+                    self.presentAlertError(alertMessage: error.localizedDescription)
+                }
+            }
+        } else {
+            favoriteItem.image = UIImage(systemName: "star.fill")
+            addRecipe(recipe: recipeDetail)
+        }
     }
-
-// MARK: - Private function
-   
     
+    
+    // MARK: - Private function
     private func initializeView() {
         insertGradient()
-        recipeTitle.text = myRecipe?.label ?? favoriteRecipes.label
-        checkRecipeInFavorite(recipe: myRecipe?.url ?? favoriteRecipes.url ?? "" )
-        getImageService(urlImage: myRecipe?.image ?? favoriteRecipes.image)
+        recipeTitle.text = recipeDetail.label ?? "No title"
+        checkRecipeInFavorite(recipe: recipeDetail.url ?? "" )
+        getImageService(urlImage: recipeDetail.image)
         getDirectionButton.layer.cornerRadius = getDirectionButton.frame.height/2
     }
     
@@ -66,10 +73,10 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     private func checkRecipeInFavorite(recipe: String) {
-        switch favoriteRecipes.recipeAlreadyExist(url: recipe) {
+        switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
         case true:
             favoriteItem.image = UIImage(systemName: "star.fill")
-        case false:
+        default:
             favoriteItem.image = UIImage(systemName: "star")
         }
     }
@@ -79,7 +86,7 @@ class RecipeDetailsViewController: UIViewController {
         guard let urlImage = urlImage else {
             return
         }
-
+        
         ImageRecipeService.shared.getImage(link: urlImage) { [weak self] callBack in
             guard let self = self else {
                 return
@@ -99,20 +106,25 @@ class RecipeDetailsViewController: UIViewController {
         activityIndicator.isHidden = shown
     }
     
-    private func addRecipe(recipe: RecipeDetails?) {
-        guard let recipe = recipe else {
-            return
-        }
-        
-        if favoriteRecipes.recipeAlreadyExist(url: recipe.url) {
-            presentAlert(alertMessage: "You have already in your favorite")
-        } else {
+    private func addRecipe(recipe: RecipeDetailsEntity) {
+        switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
+        case true:
+            presentAlertError(alertMessage: "You have already in your favorite")
             
-            switch favoriteRecipes.saveRecipe(recipe: recipe) {
-            case true:
-                presentAlert(alertTitle: "Success 👍", alertMessage: "Add into your favorite \nYou have \(FavoritesRecipes.all.count) recipes saved")
-            case false:
-                presentAlert( alertTitle: "🙁", alertMessage: "Error during save. n/Try again")
+        case false:
+            saveRecipe(recipe)
+        }
+    }
+    
+    private func saveRecipe(_ recipe: RecipeDetailsEntity) {
+        CoreDataManager.shared.saveRecipe(recipe: recipe) { result in
+            switch result {
+            case .success(_):
+                let numberFavorites = CoreDataManager.shared.getFavoritesRecipes().count
+                presentAlertSuccess(alertMessage: "Save success 👍 you have \(numberFavorites) recipes saved")
+            case .failure(_):
+                presentAlertError(alertMessage: CoreDataError.saveError.detail)
+                
             }
         }
     }
@@ -121,29 +133,15 @@ class RecipeDetailsViewController: UIViewController {
 // MARK: - TableView - DataSource
 extension RecipeDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var linesCount = 0
-        if favoritePage {
-            linesCount = favoriteRecipes.ingredientLines?.count ?? 0
-        } else {
-            linesCount = myRecipe?.ingredientLines?.count ?? 0
-        }
-        return linesCount
+        return recipeDetail.ingredientLines?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        
-        if favoritePage {
-            guard let favoriteDetail = favoriteRecipes.ingredientLines else {
-                return cell
-            }
-            cell.textLabel?.text = "- \(favoriteDetail[indexPath.row])"
-        } else {
-            guard let myRecipe = myRecipe?.ingredientLines else {
-                return cell
-            }
-            cell.textLabel?.text = "- \(myRecipe[indexPath.row])"
+        guard let food = recipeDetail.ingredientLines?[indexPath.row] else {
+            return cell
         }
+        cell.textLabel?.text = "- \(food)"
         return cell
     }
 }
