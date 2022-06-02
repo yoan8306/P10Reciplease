@@ -8,10 +8,10 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-    
+
     // MARK: - Properties
     var recipeDetail = RecipeDetailsEntity()
-    
+
     // MARK: - IBOutlet
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
@@ -20,14 +20,14 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteItem: UIBarButtonItem!
     @IBOutlet weak var getDirectionButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
-    
+
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
     }
-    
+
     // MARK: - IBAction
     @IBAction func getDirectionAction() {
         guard let url = URL(string: (recipeDetail.url ?? "www.edamam.com")) else {
@@ -36,7 +36,7 @@ class RecipeDetailsViewController: UIViewController {
         }
         UIApplication.shared.open(url)
     }
-    
+
     @IBAction func FavoriteButtonAction(_ sender: UIBarButtonItem) {
         if CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
             favoriteItem.image = UIImage(systemName: "star")
@@ -53,8 +53,7 @@ class RecipeDetailsViewController: UIViewController {
             addRecipe(recipe: recipeDetail)
         }
     }
-    
-    
+
     // MARK: - Private function
     private func initializeView() {
         insertGradient()
@@ -63,7 +62,7 @@ class RecipeDetailsViewController: UIViewController {
         getImageService(urlImage: recipeDetail.image)
         getDirectionButton.layer.cornerRadius = getDirectionButton.frame.height/2
     }
-    
+
     private func insertGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = backgroundLabelUIView.bounds
@@ -71,7 +70,7 @@ class RecipeDetailsViewController: UIViewController {
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         backgroundLabelUIView.layer.insertSublayer(gradient, at: 0)
     }
-    
+
     private func checkRecipeInFavorite(recipe: String) {
         switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
         case true:
@@ -80,13 +79,13 @@ class RecipeDetailsViewController: UIViewController {
             favoriteItem.image = UIImage(systemName: "star")
         }
     }
-    
+
     private func getImageService(urlImage: String?) {
         toggleActivity(shown: false)
         guard let urlImage = urlImage else {
             return
         }
-        
+
         ImageRecipeService.shared.getImage(link: urlImage) { [weak self] callBack in
             guard let self = self else {
                 return
@@ -101,21 +100,21 @@ class RecipeDetailsViewController: UIViewController {
             }
         }
     }
-    
+
     private func toggleActivity(shown: Bool) {
         activityIndicator.isHidden = shown
     }
-    
+
     private func addRecipe(recipe: RecipeDetailsEntity) {
         switch CoreDataManager.shared.recipeAlreadyExist(recipe: recipeDetail) {
         case true:
             presentAlertError(alertMessage: "You have already in your favorite")
-            
+
         case false:
             saveRecipe(recipe)
         }
     }
-    
+
     private func saveRecipe(_ recipe: RecipeDetailsEntity) {
         CoreDataManager.shared.saveRecipe(recipe: recipe) { result in
             switch result {
@@ -124,10 +123,15 @@ class RecipeDetailsViewController: UIViewController {
                 presentAlertSuccess(alertMessage: "Save success 👍 you have \(numberFavorites) recipes saved")
             case .failure(_):
                 presentAlertError(alertMessage: CoreDataError.saveError.detail)
-                
             }
         }
     }
+
+    private func initializeAccessibilityHint() {
+        favoriteItem.accessibilityHint = "You can add or delete recipe into your favorite"
+        getDirectionButton.accessibilityHint  = "Open web browser for see recipe in detail"
+    }
+
 }
 
 // MARK: - TableView - DataSource
@@ -135,7 +139,7 @@ extension RecipeDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeDetail.ingredientLines?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         guard let food = recipeDetail.ingredientLines?[indexPath.row] else {

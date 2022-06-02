@@ -14,9 +14,9 @@
             filePath = "Reciplease/Controller/RecipesListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "deleteAll()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "deleteAllFavorites()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,7 +11,7 @@ import Foundation
 class SessionTaskMock: SessionTaskProtocol {
     var data: Data?
     var responseError: Error?
-    
+
     func sendTask(url: String, callBack: @escaping (Result<Data, Error>) -> Void) {
         if let data = data {
             callBack(.success(data))

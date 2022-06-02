@@ -24,7 +24,7 @@ class listRecipesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configureCellEntity(recipe: RecipeDetailsEntity) {
         addGradient()
         getImageService(recipe.image ?? "")

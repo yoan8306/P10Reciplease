@@ -15,13 +15,13 @@ class CoreDataTest: XCTestCase {
     var recipe3 = RecipeDetailsEntity()
     var myRecipes: [RecipeDetailsEntity] = []
     var coreDataSource = MockCoreDataManager()
-    
+
     override func setUp() {
         super .setUp()
         createRecipes()
         coreDataSource = MockCoreDataManager()
     }
-    
+
     func testGivenFavoritesRecipesEqualZeroRecipe_WhenAddOneRecipeIntoFavorite_ThenOneRecipeIsSave() {
         coreDataSource.saveRecipe(recipe: recipe1) { result in
             switch result {
@@ -32,17 +32,16 @@ class CoreDataTest: XCTestCase {
             }
         }
     }
-    
+
     func testGivenFavoritesRecipesIsEmpty_WhenAddAllRecipes_ThenFavoritesRecipesAreThreeRecipes() {
         saveAllRecipes()
-        
+
         XCTAssertEqual(coreDataSource.getFavoritesRecipes().count, 3)
         XCTAssertEqual(coreDataSource.getFavoritesRecipes()[0].label, recipe1.label)
         XCTAssertEqual(coreDataSource.getFavoritesRecipes()[1].url, recipe2.url)
         XCTAssertEqual(coreDataSource.getFavoritesRecipes()[2].ingredients, recipe3.ingredients)
     }
 
-    
     func testGivenThreeRecipesInsideFavorite_WhenDeleteAllRecipes_ThenFavortitesRecipesIsEmpty() {
         saveAllRecipes()
 
@@ -55,18 +54,18 @@ class CoreDataTest: XCTestCase {
             }
         }
     }
-    
+
     func testGivenAllRecipesAreInFavoritesRecipes_WhenCheckAlreadyExist_ThenResultEqualTrue() {
         saveAllRecipes()
-        
+
         let result = coreDataSource.recipeAlreadyExist(recipe: recipe1)
-        
+
         XCTAssertTrue(result)
     }
-    
+
     func testGivenThreeRecipesInFavorites_WhenDeleteOneRecipe_ThenTheyTwoRecipesInFavorites() {
         saveAllRecipes()
-        
+
         coreDataSource.deleteRecipe(recipe: recipe3) { result in
             switch result {
             case .success(_):
@@ -77,7 +76,7 @@ class CoreDataTest: XCTestCase {
             }
         }
     }
-    
+
     func testGivenNoRecipeInFavorites_WhenDeleteRecipeInFavorite_ThenHavingMessage() {
         coreDataSource.deleteRecipe(recipe: recipe3) { result in
             switch result {
@@ -99,7 +98,7 @@ class CoreDataTest: XCTestCase {
                 fatalError()
             }
         }
-        
+
         coreDataSource.saveRecipe(recipe: recipe2) { result in
             switch result {
             case .success(_):
@@ -108,7 +107,7 @@ class CoreDataTest: XCTestCase {
                 fatalError()
             }
         }
-        
+
         coreDataSource.saveRecipe(recipe: recipe3) { result in
             switch result {
             case .success(_):
@@ -117,7 +116,7 @@ class CoreDataTest: XCTestCase {
                 fatalError()
             }
         }
-        
+
         do {
            try coreDataSource.mainContext.save()
         } catch {
@@ -133,7 +132,7 @@ class CoreDataTest: XCTestCase {
         recipe1.ingredients = "pomegranate juice"
         recipe1.totalTime = 0
         recipe1.yield = 0
-        
+
         recipe2.ingredientLines = ["8 cups halved strawberries", "1/4 – 1/3 cup sugar", "1 vanilla bean, split and seeds removed"]
         recipe2.image = "https://edamam-product-images.s3.amazonaws.com"
         recipe2.url = "http://www.edamam.com/ontologies/edamam.owl#recipe_51b79ae0958c33a38c0eabad15460917"
@@ -141,7 +140,7 @@ class CoreDataTest: XCTestCase {
         recipe2.ingredients = "8 cups halved strawberries"
         recipe2.totalTime = 0
         recipe2.yield = 0
-       
+
        recipe3.ingredientLines = ["Good vanilla ice cream (about 1/2 cup per person, or as you wish)", "Grilled corn (1/2 ear per person)", "1 lime (for every four servings)"]
        recipe3.image = "https://edamam-product-images.s3.amazonaws.com"
        recipe3.url = "http://www.edamam.com/ontologies/edamam.owl#recipe_845a9adf81bb22f3b76ead2981a872a0"
@@ -149,7 +148,7 @@ class CoreDataTest: XCTestCase {
        recipe3.ingredients = "Good vanilla ice cream (about 1/2 cup per person, or as you wish)"
        recipe3.totalTime = 0
        recipe3.yield = 0
-        
+
         myRecipes = [recipe1, recipe2, recipe3]
     }
 }

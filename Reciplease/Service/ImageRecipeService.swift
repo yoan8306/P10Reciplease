@@ -10,6 +10,7 @@ import Alamofire
 
 class ImageRecipeService {
     static var shared = ImageRecipeService(session: SessionTask.shared)
+// inject dependance for test here
     var session: SessionTaskProtocol
     init(session: SessionTaskProtocol) {
         self.session = session

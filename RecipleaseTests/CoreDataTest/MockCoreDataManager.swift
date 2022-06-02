@@ -10,17 +10,17 @@ import CoreData
 @testable import Reciplease
 
 final class MockCoreDataManager: CoreDataManager {
-
+// modify persistantContainer memory type for inject NSInMemory
     override init() {
         super.init()
         let persistentStoreDescription = NSPersistentStoreDescription()
+        // modify type of data base
         persistentStoreDescription.type = NSInMemoryStoreType
 
         let container = NSPersistentContainer(name: CoreDataManager.modelName)
-
         container.persistentStoreDescriptions = [persistentStoreDescription]
 
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
           if let error = error as NSError? {
             fatalError("Unresolved error \(error), \(error.userInfo)")
           }
