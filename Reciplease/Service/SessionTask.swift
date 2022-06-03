@@ -8,10 +8,12 @@
 import Foundation
 import Alamofire
 
+// MARK: - Protocole for test Session task
 protocol SessionTaskProtocol {
     func sendTask(url: String, callBack: @escaping (Result<Data, Error>) -> Void)
 }
 
+// MARK: - SessionTask class
 class SessionTask: SessionTaskProtocol {
     static let shared = SessionTask()
     private init() {}

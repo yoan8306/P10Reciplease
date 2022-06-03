@@ -10,7 +10,7 @@ import Foundation
 enum CoreDataError: Error {
     case deleteError
     case saveError
-    
+
     var detail: String {
         switch self {
         case .deleteError:

@@ -16,10 +16,11 @@ class CoreDataManager {
         let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
-    
+// return dataBase
     lazy var mainContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()
+// return files of data base
     var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
         container.loadPersistentStores { _, error in
@@ -31,7 +32,6 @@ class CoreDataManager {
     }()
 
     // MARK: - functions
-    
     func getFavoritesRecipes() -> [FavoritesRecipes] {
         let request: NSFetchRequest<FavoritesRecipes> = FavoritesRecipes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
@@ -40,13 +40,13 @@ class CoreDataManager {
         }
         return recipes
     }
-    
+
     func recipeAlreadyExist(recipe: RecipeDetailsEntity) -> Bool {
         let coreDataFavorites = getFavoritesRecipes()
         let recipeList = coreDataFavorites.asEntities()
         return recipeList.contains(recipe)
     }
-    
+
     func saveRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
         let newRecipe = FavoritesRecipes(context: mainContext)
         newRecipe.ingredientLines = recipe.ingredientLines
@@ -56,14 +56,14 @@ class CoreDataManager {
         newRecipe.ingredients = recipe.ingredients?.description
         newRecipe.totalTime = recipe.totalTime ?? 0
         newRecipe.yield = recipe.yield ?? 0
-        
+
         save(completion)
     }
-    
+
     func deleteRecipe(recipe: RecipeDetailsEntity, completion: (Result<Void, Error>) -> Void) {
         let coreDataFavorites = getFavoritesRecipes()
         let entitiesFavorites = coreDataFavorites.asEntities()
-        
+
         guard let index = entitiesFavorites.firstIndex(where: { $0 == recipe }) else {
             completion(.failure(CoreDataError.deleteError))
             return
@@ -71,7 +71,7 @@ class CoreDataManager {
         mainContext.delete(coreDataFavorites[index])
         save(completion)
     }
-    
+
     func deleteAllRecipes(completion: (Result<Void, Error>) -> Void) {
         let coreDataFavorites = getFavoritesRecipes()
         for recipe in coreDataFavorites {
@@ -79,7 +79,7 @@ class CoreDataManager {
         }
         save(completion)
     }
-    
+
     // MARK: - private function
     private func save(_ completion: (Result<Void, Error>) -> Void) {
         do {

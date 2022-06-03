@@ -14,9 +14,9 @@ class ImageServiceTest: XCTestCase {
         let imageService = ImageRecipeService(session: session)
         let response = FakeResponseData()
         let image = "image".data(using: .utf8)
-        
+
         session.data = response.imageData
-        
+
         imageService.getImage(link: "") { result in
             switch result {
             case .success(let imageData):
@@ -26,13 +26,13 @@ class ImageServiceTest: XCTestCase {
             }
         }
     }
-    
+
     func testGivenCallImageService_WhenNoData_ThenResultIsFailed() {
         let session = SessionTaskMock()
         let imageService = ImageRecipeService(session: session)
-        
+
         session.data = nil
-        
+
         imageService.getImage(link: "") { result in
             switch result {
             case .success(_):
@@ -41,10 +41,7 @@ class ImageServiceTest: XCTestCase {
                 XCTAssertEqual(APIError.noData, error as! APIError)
             }
         }
-        
-        
-        
+
     }
 
-    
 }

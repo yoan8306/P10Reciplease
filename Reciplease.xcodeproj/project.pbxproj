@@ -313,6 +313,7 @@
 				5F9566F1281AABB900B5C843 /* Frameworks */,
 				5F9566F2281AABB900B5C843 /* Resources */,
 				120EF9B0D272F7581B54FBA2 /* [CP] Embed Pods Frameworks */,
+				5FAF70B92848C9B7004C13F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -421,6 +422,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5FAF70B92848C9B7004C13F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		A408932700F59D166E86F036 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

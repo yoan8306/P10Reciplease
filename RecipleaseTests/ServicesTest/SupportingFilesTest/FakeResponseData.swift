@@ -16,7 +16,7 @@ class FakeResponseData {
     }
     var recipesIncorrectData = "I'm bad json".data(using: .utf8)
     var imageData = "image".data(using: .utf8)
-    
+
     class ResponseError: Error {
         var responseError = ResponseError()
     }

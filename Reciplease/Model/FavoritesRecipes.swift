@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 class FavoritesRecipes: NSManagedObject {
-  
 
 }
 
@@ -25,6 +24,5 @@ extension Collection where Element == FavoritesRecipes {
                                      ingredients: $0.ingredients)
          }
     }
-    
-    
+
 }
