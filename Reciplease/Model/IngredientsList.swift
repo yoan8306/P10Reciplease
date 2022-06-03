@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// get user's list ingredient for implement table view
 class IngredientsList {
     var listIngredient: [String]
 
@@ -16,6 +16,7 @@ class IngredientsList {
 
 // MARK: - Add ingredient
     func addIngredient(ingredientList: String) -> Bool {
+        // Delete space for convert string to array element
         let myList = deleteSpace(ingredientList: ingredientList)
         guard !myList.isEmpty else {
             return false
@@ -39,6 +40,7 @@ class IngredientsList {
     }
 
 // MARK: - return ingredient list
+    // transmet list ingredient to api
     func returnIngredientList() -> String {
         return listIngredient.joined(separator: ",")
     }

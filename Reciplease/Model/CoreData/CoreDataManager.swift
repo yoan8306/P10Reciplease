@@ -12,23 +12,24 @@ class CoreDataManager {
     // MARK: - Properties
     static var shared = CoreDataManager()
     static let modelName = "Reciplease"
+// object model create when project is build
     static let model: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
-// return dataBase
+// get or stock object in the file choose
+        var persistentContainer: NSPersistentContainer = {
+            let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
+            container.loadPersistentStores { _, error in
+                if let error = error as NSError? {
+                    fatalError("Unresolved error \(error), \(error.userInfo)")
+                }
+            }
+            return container
+        }()
+// modify object, read, or delete or save
     lazy var mainContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
-    }()
-// return files of data base
-    var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: CoreDataManager.modelName, managedObjectModel: CoreDataManager.model)
-        container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-        return container
     }()
 
     // MARK: - functions
