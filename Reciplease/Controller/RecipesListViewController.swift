@@ -33,6 +33,9 @@ class RecipesListViewController: UIViewController {
         super.viewWillAppear(animated)
         refreshFavorites()
         recipesListTableView.reloadData()
+        if recipesListEntities.isEmpty {
+            recipesListTableView.accessibilityHint = "You don't have favorite recipe"
+        }
     }
 
     // MARK: - IBAction

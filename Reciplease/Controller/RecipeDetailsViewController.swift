@@ -26,6 +26,7 @@ class RecipeDetailsViewController: UIViewController {
         super.viewDidLoad()
         favoriteItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
         initializeView()
+        initializeAccessibilityHint()
     }
 
     // MARK: - IBAction
@@ -131,7 +132,6 @@ class RecipeDetailsViewController: UIViewController {
         favoriteItem.accessibilityHint = "You can add or delete recipe into your favorite"
         getDirectionButton.accessibilityHint  = "Open web browser for see recipe in detail"
     }
-
 }
 
 // MARK: - TableView - DataSource
