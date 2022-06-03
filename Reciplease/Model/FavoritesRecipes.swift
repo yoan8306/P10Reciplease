@@ -13,6 +13,7 @@ class FavoritesRecipes: NSManagedObject {
 }
 
 extension Collection where Element == FavoritesRecipes {
+// create entities array of my model object
     func asEntities () -> [RecipeDetailsEntity] {
         map {
             RecipeDetailsEntity.init(label: $0.label,
