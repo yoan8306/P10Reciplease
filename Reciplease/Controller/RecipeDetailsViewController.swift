@@ -28,6 +28,11 @@ class RecipeDetailsViewController: UIViewController {
         initializeView()
         initializeAccessibilityHint()
     }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        insertGradient()
+    }
     
     // MARK: - IBAction
     @IBAction func getDirectionAction() {
@@ -56,13 +61,12 @@ class RecipeDetailsViewController: UIViewController {
         }
     }
     
-    // MARK: - Private function
+// MARK: - Private function
     private func initializeView() {
         recipeTitle.text = recipeDetail.label ?? "No title"
         checkRecipeInFavorite(recipe: recipeDetail.url ?? "" )
         getImageService(urlImage: recipeDetail.image)
         getDirectionButton.layer.cornerRadius = getDirectionButton.frame.height/2
-        insertGradient()
     }
     
     private func insertGradient() {

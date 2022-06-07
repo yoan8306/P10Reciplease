@@ -15,7 +15,7 @@ class RecipesListViewController: UIViewController {
     lazy var trashBarItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteAllFavorites))
     }()
-    
+
     // MARK: - IBOutlet
     @IBOutlet weak var recipesListTableView: UITableView!
     
@@ -23,13 +23,14 @@ class RecipesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeAccessibility()
+        recipesListTableView.rowHeight = UITableView.automaticDimension
         recipesListTableView.estimatedRowHeight = UITableView.automaticDimension
         if favoriteMode {
             trashBarItem.tintColor = #colorLiteral(red: 0.2679148018, green: 0.5845233202, blue: 0.3515217304, alpha: 1)
             navigationItem.rightBarButtonItem = trashBarItem
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshFavorites()
@@ -40,8 +41,8 @@ class RecipesListViewController: UIViewController {
             recipesListTableView.backgroundView = nil
         }
     }
-    
-    // MARK: - IBAction
+
+// MARK: - IBAction
     
     @objc func deleteAllFavorites() {
         CoreDataManager.shared.deleteAllRecipes { [weak self] result in
@@ -57,7 +58,7 @@ class RecipesListViewController: UIViewController {
         }
     }
     
-    // MARK: - private function
+// MARK: - private function
     private func refreshFavorites() {
         if favoriteMode {
             recipesListEntities = CoreDataManager.shared.getFavoritesRecipes().asEntities()
@@ -90,21 +91,10 @@ extension RecipesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! listRecipesTableViewCell
-        cell.configureCellEntity(recipe: recipesListEntities[indexPath.row])
-        
-        InitializeAccessibilityHintCell(cell)
+        cell.configureCellEntity(recipe: recipesListEntities[indexPath.row], favoriteMode: favoriteMode)
         
         return cell
     }
-    
-    private func InitializeAccessibilityHintCell(_ cell: listRecipesTableViewCell) {
-        let actionHintSearchMode = "Click on cell for show details"
-        let actionHintFavoriteMode = "Click on recipe for show details, or swipe right to left for delete this"
-        let HintAccessibility = favoriteMode ? actionHintFavoriteMode : actionHintSearchMode
-        
-        cell.accessibilityHint = HintAccessibility
-    }
-    
 }
 
 // MARK: - TableView Delegate

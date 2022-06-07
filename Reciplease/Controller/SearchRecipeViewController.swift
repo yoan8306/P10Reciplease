@@ -93,12 +93,13 @@ class SearchRecipeViewController: UIViewController {
     }
     
     private func initializeAccessibilityHint() {
+        ingredientsTextField.accessibilityLabel = "TextField for your ingredient"
         ingredientsTextField.accessibilityHint = "You can separate ingredients by comma. Or keep empty for see suggestions recipes"
         addButton.accessibilityHint = "Insert your list ingredients in table."
         ListIngredientsTableView.accessibilityHint = "Swipe left for delete ingredient."
         searchRecipeButton.accessibilityHint = "Double tap for see recipe list."
         clearButton.accessibilityHint = "Clear your ingredients list."
-        
+
     }
 }
 
@@ -107,7 +108,7 @@ extension SearchRecipeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userIngredients.listIngredient.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = userIngredients.listIngredient[indexPath.row]
@@ -115,7 +116,7 @@ extension SearchRecipeViewController: UITableViewDataSource {
         cell.accessibilityHint = "Swipe left for delete ingredient."
         return cell
     }
-    
+
     private func configureCell(cell: UITableViewCell, ingredient: String) {
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
@@ -127,8 +128,8 @@ extension SearchRecipeViewController: UITableViewDataSource {
             cell.textLabel?.text = ingredient
         }
     }
-    
 }
+
 // MARK: - TableView delegate
 extension SearchRecipeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -20,10 +20,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="125"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lemon, Cheese, Sausage..." textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FA0-tE-Gt3">
-                                        <rect key="frame" x="0.0" y="85" width="344" height="30"/>
+                                        <rect key="frame" x="0.0" y="70" width="344" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="qdO-KZ-hwv"/>
+                                            <constraint firstAttribute="height" constant="45" id="qdO-KZ-hwv"/>
                                         </constraints>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="17"/>
@@ -33,15 +33,16 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nah-PG-xwo">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="24"/>
                                         <color key="textColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuL-kF-R9B">
-                                        <rect key="frame" x="344" y="85" width="65" height="30"/>
+                                        <rect key="frame" x="344" y="70" width="65" height="45"/>
                                         <color key="backgroundColor" red="0.2678874135" green="0.58452969789999998" blue="0.34296116230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Add">
                                             <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
@@ -79,16 +80,16 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax3-5h-3Rf">
-                                <rect key="frame" x="20" y="179" width="179" height="30"/>
+                                <rect key="frame" x="20" y="179" width="179" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1OP-Zf-JIW"/>
+                                    <constraint firstAttribute="height" constant="45" id="1OP-Zf-JIW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOf-jI-bWE">
-                                <rect key="frame" x="344" y="179" width="65" height="30"/>
+                                <rect key="frame" x="344" y="179" width="65" height="45"/>
                                 <color key="backgroundColor" red="0.5411764979" green="0.5411764979" blue="0.5411764979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Clear">
@@ -100,7 +101,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8nt-Bd-wWT">
-                                <rect key="frame" x="0.0" y="209" width="414" height="603"/>
+                                <rect key="frame" x="0.0" y="224" width="414" height="588"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="ojk-Ok-atX" style="IBUITableViewCellStyleDefault" id="tBU-u0-GsC">
@@ -165,7 +166,7 @@
                             <constraint firstItem="AOf-jI-bWE" firstAttribute="leading" secondItem="WuL-kF-R9B" secondAttribute="leading" id="VoO-mf-UQ6"/>
                             <constraint firstItem="ven-VI-TcC" firstAttribute="top" secondItem="YhK-RX-1jy" secondAttribute="top" id="Xot-2t-K1x"/>
                             <constraint firstItem="YhK-RX-1jy" firstAttribute="trailing" secondItem="Hg2-RO-zrX" secondAttribute="trailing" constant="30" id="ZWX-En-vgt"/>
-                            <constraint firstItem="AOf-jI-bWE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ax3-5h-3Rf" secondAttribute="trailing" constant="8" symbolic="YES" id="b0n-pr-K0g"/>
+                            <constraint firstItem="AOf-jI-bWE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ax3-5h-3Rf" secondAttribute="trailing" constant="16" id="b0n-pr-K0g"/>
                             <constraint firstItem="pGy-x8-AOS" firstAttribute="centerY" secondItem="Hg2-RO-zrX" secondAttribute="centerY" id="bhK-V7-Ljo"/>
                             <constraint firstItem="Ax3-5h-3Rf" firstAttribute="leading" secondItem="YhK-RX-1jy" secondAttribute="leading" constant="20" id="dzB-sO-aCu"/>
                             <constraint firstItem="YhK-RX-1jy" firstAttribute="trailing" secondItem="ven-VI-TcC" secondAttribute="trailing" id="nKp-93-R4X"/>

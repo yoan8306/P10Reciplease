@@ -8,7 +8,7 @@
 import UIKit
 
 class listRecipesTableViewCell: UITableViewCell {
-    
+// MARK: - IBOutlet
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabelUIView: UIView!
     @IBOutlet weak var recipesTitle: UILabel!
@@ -16,7 +16,8 @@ class listRecipesTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientsList: UILabel!
     @IBOutlet weak var scoreRecipe: UILabel!
     @IBOutlet weak var totalTime: UILabel!
-    
+
+// MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,13 +25,16 @@ class listRecipesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func configureCellEntity(recipe: RecipeDetailsEntity) {
+
+// MARK: - Function
+    func configureCellEntity(recipe: RecipeDetailsEntity, favoriteMode: Bool) {
         getImageService(recipe.image ?? "")
         configureTextCell(recipe: recipe)
+        initializeAccessibilityHintCell(favoriteMode: favoriteMode)
         addGradient()
     }
-    
+
+// MARK: - Private functions
     private func addGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = backgroundLabelUIView.bounds
@@ -40,7 +44,7 @@ class listRecipesTableViewCell: UITableViewCell {
         backgroundLabelUIView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         backgroundLabelUIView.layer.insertSublayer(gradient, at: 0)
     }
-    
+
     private func getImageService(_ urlImage: String) {
         toggleActivityIndicator(shown: true)
         
@@ -60,6 +64,14 @@ class listRecipesTableViewCell: UITableViewCell {
             }
         }
     }
+
+    private func initializeAccessibilityHintCell(favoriteMode: Bool) {
+        let actionHintSearchMode = "Click on cell for show details"
+        let actionHintFavoriteMode = "Click on recipe for show details, or scroll with three fingers right to left for delete this"
+        let hintAccessibility = favoriteMode ? actionHintFavoriteMode : actionHintSearchMode
+
+        accessibilityHint = hintAccessibility
+    }
     
     private func toggleActivityIndicator(shown: Bool) {
         activityIndicator.isHidden = !shown
@@ -68,7 +80,7 @@ class listRecipesTableViewCell: UITableViewCell {
     private func configureTextCell(recipe: RecipeDetailsEntity) {
         recipesTitle.text = recipe.label ?? "No title"
         ingredientsList.text = recipe.ingredients ?? "No list"
-        totalTime.text = "\(String(recipe.totalTime ?? 0)): min ⏲"
+        totalTime.text = "\(String(Int(recipe.totalTime ?? 0))) min ⏲"
         scoreRecipe.text = "\(String(recipe.yield ?? 0))K 👍"
     }
 }
