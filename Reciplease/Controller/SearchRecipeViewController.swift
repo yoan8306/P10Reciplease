@@ -113,7 +113,6 @@ extension SearchRecipeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = userIngredients.listIngredient[indexPath.row]
         configureCell(cell: cell, ingredient: ingredient)
-        cell.accessibilityHint = "Swipe left for delete ingredient."
         return cell
     }
 
@@ -127,6 +126,7 @@ extension SearchRecipeViewController: UITableViewDataSource {
         } else {
             cell.textLabel?.text = ingredient
         }
+        cell.accessibilityHint = "Swipe left for delete ingredient."
     }
 }
 
