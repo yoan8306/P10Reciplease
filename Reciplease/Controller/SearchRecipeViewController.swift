@@ -22,7 +22,7 @@ class SearchRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeView()
-        initializeAccessibilityHint()
+        initializeAccessibility()
     }
     
     // MARK: - IBAction
@@ -92,7 +92,7 @@ class SearchRecipeViewController: UIViewController {
         
     }
     
-    private func initializeAccessibilityHint() {
+    private func initializeAccessibility() {
         ingredientsTextField.accessibilityLabel = "TextField for your ingredient"
         ingredientsTextField.accessibilityHint = "You can separate ingredients by comma. Or keep empty for see suggestions recipes"
         addButton.accessibilityHint = "Insert your list ingredients in table."
