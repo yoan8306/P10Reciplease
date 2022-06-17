@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F282551285CC865004A0603 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F282550285CC865004A0603 /* ApiKey.swift */; };
 		5F4173972825417600B614A5 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4173962825417600B614A5 /* APIError.swift */; };
 		5F49F2FC281FE6520092B5EC /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49F2FB281FE6520092B5EC /* RecipeDetailsViewController.swift */; };
 		5F49F2FF28206AF40092B5EC /* UIViewController_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49F2FE28206AF40092B5EC /* UIViewController_Alert.swift */; };
@@ -59,6 +60,7 @@
 		483F4CB84B83F15098C54399 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 		4E2DA15CC00B551DF63344CF /* Pods-Reciplease-RecipleaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease-RecipleaseUITests.release.xcconfig"; path = "Target Support Files/Pods-Reciplease-RecipleaseUITests/Pods-Reciplease-RecipleaseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50E3BC4DC0EE8E309D5A73FA /* Pods-RecipleaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5F282550285CC865004A0603 /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		5F4173962825417600B614A5 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		5F49F2FB281FE6520092B5EC /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		5F49F2FE28206AF40092B5EC /* UIViewController_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Alert.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				5F4173962825417600B614A5 /* APIError.swift */,
 				5F60346F2828E05500EE2580 /* ImageRecipeService.swift */,
 				5F510BC828270BD0004C89F3 /* recipeService.swift */,
+				5F282550285CC865004A0603 /* ApiKey.swift */,
 				5F510BCA28270F8F004C89F3 /* RecipesDTO.swift */,
 			);
 			path = Service;
@@ -500,6 +503,7 @@
 				5F49F2FF28206AF40092B5EC /* UIViewController_Alert.swift in Sources */,
 				5F9566F8281AABB900B5C843 /* AppDelegate.swift in Sources */,
 				5F9566FA281AABB900B5C843 /* SceneDelegate.swift in Sources */,
+				5F282551285CC865004A0603 /* ApiKey.swift in Sources */,
 				5FA8220828365D5800C91099 /* CoreDataError.swift in Sources */,
 				5F510BCB28270F8F004C89F3 /* RecipesDTO.swift in Sources */,
 				5F49F2FC281FE6520092B5EC /* RecipeDetailsViewController.swift in Sources */,
