@@ -36,7 +36,7 @@ class SearchRecipeViewController: UIViewController {
             ingredientsTextField.resignFirstResponder()
             ListIngredientsTableView.reloadData()
         } else {
-            presentAlertError(alertMessage: "You can separate ingredient list with \",\"\nTry again 😉")
+            presentAlertError(alertMessage: "The list is empty. \nYou can separate ingredient list with \",\"\nTry again 😉")
         }
     }
     

@@ -39,15 +39,15 @@
                                         <color key="textColor" red="0.21562370659999999" green="0.20000320669999999" blue="0.20000267029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuL-kF-R9B">
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuL-kF-R9B">
                                         <rect key="frame" x="245" y="70" width="70" height="45"/>
                                         <color key="backgroundColor" red="0.2678874135" green="0.58452969789999998" blue="0.34296116230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add">
-                                            <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="addIngredientsActionButton" destination="bFA-Xw-vCN" eventType="touchUpInside" id="nMr-Oe-9WL"/>
                                         </connections>
@@ -93,11 +93,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="HSm-qm-Bek"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Clear">
-                                    <fontDescription key="titleFontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="clearIngredientsActionButton" destination="bFA-Xw-vCN" eventType="touchUpInside" id="7Xj-WU-br7"/>
                                 </connections>
